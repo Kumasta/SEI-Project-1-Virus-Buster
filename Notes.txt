@@ -1,0 +1,30 @@
+//1. create grid and character placement and movement.
+//2. limit movement to bottom line 
+//?? figure out a recursive way to test to the last line.
+
+//3. add 'fire' button to spacebar.
+//4. fire function and animation. 
+//6. Start with statik enemies on map
+//7. Work on collision of player fire. When shot occupies the same space as the enemy, delete the alien.
+//8. Enamy fire back/drop bombs at random intervals or semi regular intervals. 
+//?? one drop at a time?
+//?? as time increase, more bombs drop, more than one at a time?
+//9. Collion of enamy bomb on play, game over. 
+//10. aliens shift one left to right, back and forth. 
+//?? when line reaches one side the whole block pushes down and shifts to the other side. Events for aliens touching the sides and move down. All line need to move down. 
+
+//?? the line of aliens needs to be in an array. the array length will change but the positions need to stay the same???
+
+//11. Work out if aliens position touch play or the bottom row, game over. 
+
+//12. the lower the alien lines, the short the time interval for moving becomes?
+
+// responsive design for different sized grids? 
+// End of a game start a new wave with same score.
+// leaderboards
+//??e.g. alien array length is dependent on the width of the grid. 
+//?? speed of aliens for different widths.
+//?? difficulty buttons.
+// difficulty ramp up for each new wave? increased speed, alien number?
+//?? need to make set intervals shorter etc.. 
+// difficulty start buttons?
