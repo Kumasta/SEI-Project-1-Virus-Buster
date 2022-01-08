@@ -54,7 +54,6 @@ function init(){
   function removeVirus(position) {
     cells[position].classList.remove(virusClass)
     virusCurrentPosition = null
-    addVirus()
   }
 
   //Function to move character and fire 
