@@ -56,23 +56,21 @@ function init(){
       virusCurrentPositionArray.push(position + i)
       virusCurrentPositionArray.push(position + width + i)
       virusCurrentPositionArray.push(position + width * 2 + i)
-      // virusCurrentPositionArray.sort((a, b) => {
-      //   return b - a
-      // })
-      console.log('Virus Positons:', virusCurrentPositionArray)
     }
+    console.log('Virus Positons:', virusCurrentPositionArray)
   }
+
   function removeVirus(position) {
     cells[position].classList.remove(virusClass)
   
     const collided = virusCurrentPositionArray.indexOf(position)
     virusCurrentPositionArray.splice(collided, 1)
+    console.log(virusCurrentPositionArray)
   }
 
   //Virus Movment
   function VirusMovement() {
-    const movmentInterval = setInterval(() => {
-      // console.log('Move from', virusCurrentPositionArray)
+    const movementInterval = setInterval(() => {
       virusCurrentPositionArray.forEach(position => {
         cells[position].classList.remove(virusClass)
       })
@@ -87,7 +85,11 @@ function init(){
       } else if (virusCurrentPositionArray[0] % width === 0){
         direction *= -1
         moveLineDown()
+      } if (virusCurrentPositionArray.length === 0) {
+        clearInterval(movementInterval)
+        gameWin()
       }
+      console.log('Interval Running')
     }, virusSpeed)
   }
 
@@ -155,14 +157,18 @@ function init(){
     cells[location].classList.remove(fireClass)
   }
   
+  function gameWin() {
+    window.alert('You won the game!')
+  }
 
   //Linking keyboard presses to function:
   window.addEventListener('keyup', movementAndFire)
 
   //Set up fucntions
-  function startUpGame() {
+  function startUpGame(event) {
     addVirusStart(virusStartPosition)
     VirusMovement()
+    event.target.disable = true
     // console.log('Start Tiles:', cells) 
   }
 
