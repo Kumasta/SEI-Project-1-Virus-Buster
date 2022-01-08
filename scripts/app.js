@@ -17,7 +17,11 @@ function init(){
   //Virus Variables
   const virusClass = 'virus'
   const virusStartPosition = 33
-  const virusCurrentPositionArray = []
+  //Add number of virus lines varaibles to ramp up difficulty e.g. const virusLineNumber = 1
+  // Use this in a for loop in addVirus() function
+  // const virusSpeed = 1000 :::: Varaible to change the speed of virus line movement 
+  let virusCurrentPositionArray = []
+  const direction = 1
 
   //Fire shot Varaibles
   const fireClass = 'fire'
@@ -47,26 +51,48 @@ function init(){
   function addVirusStart(position) {
     for (let i = 0; i < 8; i++) {
       cells[position + i].classList.add(virusClass)
-      cells[position + width + i].classList.add(virusClass)
+      // cells[position + width + i].classList.add(virusClass)
       virusCurrentPositionArray.push(position + i)
-      virusCurrentPositionArray.push(position + width +  i)
-      console.log('Virus Positons:', virusCurrentPositionArray)
+      // virusCurrentPositionArray.push(position + width + i)
+      // virusCurrentPositionArray.sort((a, b) => {
+      //   return b - a
+      // })
+      // console.log('Virus Positons:', virusCurrentPositionArray)
     }
   }
   function removeVirus(position) {
     cells[position].classList.remove(virusClass)
-    // virusCurrentPosition = null
+    // virusCurrentPosition = null // Change this into a function that will slice out the array index of that position
   }
 
   //Virus Movment
-  // function VirusMovementRight() {
-  //   setInterval(() => {
-  //     virusCurrentPositionArray.forEach(position => {
-  //       cells[position].classList.remove(virusClass)
-  //       cells[position++].classList.add(virusClass)
-  //     })
-  //   }, 5000)
-  // }
+  function VirusMovementRight() {
+    console.log('Before', virusCurrentPositionArray)
+    setInterval(() => {
+      virusCurrentPositionArray.forEach(position => {
+        cells[position].classList.remove(virusClass)
+      })
+      virusCurrentPositionArray = virusCurrentPositionArray.map(position => position + direction)
+      virusCurrentPositionArray.forEach(position => {
+        cells[position].classList.add(virusClass)
+      })
+    }, 1000 / 2)
+  
+
+
+    console.log('After:', virusCurrentPositionArray)
+    // virusCurrentPositionArray.forEach(position => {
+    //   setInterval(() => {
+    //     console.log('Virus at:', position)
+    //     cells[position].classList.remove(virusClass)
+    //     virusCurrentPositionArray = []
+    //     position++
+    //     virusCurrentPositionArray.push(position)
+    //     console.log('New Array', virusCurrentPositionArray)
+    //   }, 5000)
+    // })
+  }
+  
 
   //Function to move character and fire 
   function movementAndFire(event) {
