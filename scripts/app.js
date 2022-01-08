@@ -19,7 +19,7 @@ function init(){
   const virusStartPosition = 33
   //Add number of virus lines varaibles to ramp up difficulty e.g. const virusLineNumber = 1
   // Use this in a for loop in addVirus() function
-  // const virusSpeed = 1000 :::: Varaible to change the speed of virus line movement 
+  const virusSpeed = 1000 / 2
   let virusCurrentPositionArray = []
   let direction = 1
 
@@ -67,13 +67,8 @@ function init(){
 
   //Virus Movment
   function VirusMovement() {
-    const rightWall = virusCurrentPositionArray[virusCurrentPositionArray.length - 1] % width !== width - 1
-    console.log(virusCurrentPositionArray[virusCurrentPositionArray.length - 1] % width)
-    const leftWall = virusCurrentPositionArray[0] % width !== 0
-
-
-    const moveRight = setInterval(() => {
-      console.log('Move from', virusCurrentPositionArray)
+    const movmentInterval = setInterval(() => {
+      // console.log('Move from', virusCurrentPositionArray)
       virusCurrentPositionArray.forEach(position => {
         cells[position].classList.remove(virusClass)
       })
@@ -84,14 +79,28 @@ function init(){
 
       if (virusCurrentPositionArray[virusCurrentPositionArray.length - 1] % width === width - 1) {
         direction *= -1
+        moveLineDown()
       } else if (virusCurrentPositionArray[0] % width === 0){
         direction *= -1
+        moveLineDown()
       }
-    }, 1000)
+    }, virusSpeed)
   }
-  
-  console.log(44 % 15)
 
+  function moveLineDown() {
+    setTimeout(() => {
+
+      virusCurrentPositionArray.forEach(position => {
+        cells[position].classList.remove(virusClass)
+      })
+      virusCurrentPositionArray = virusCurrentPositionArray.map(position => position + width)
+  
+      virusCurrentPositionArray.forEach(position => {
+        cells[position].classList.add(virusClass)
+      })  
+    }, virusSpeed)
+
+  }
 
   //Function to move character and fire 
   function movementAndFire(event) {
