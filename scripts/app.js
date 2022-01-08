@@ -21,7 +21,7 @@ function init(){
   // Use this in a for loop in addVirus() function
   // const virusSpeed = 1000 :::: Varaible to change the speed of virus line movement 
   let virusCurrentPositionArray = []
-  const direction = 1
+  let direction = 1
 
   //Fire shot Varaibles
   const fireClass = 'fire'
@@ -66,9 +66,14 @@ function init(){
   }
 
   //Virus Movment
-  function VirusMovementRight() {
-    console.log('Before', virusCurrentPositionArray)
-    setInterval(() => {
+  function VirusMovement() {
+    const rightWall = virusCurrentPositionArray[virusCurrentPositionArray.length - 1] % width !== width - 1
+    console.log(virusCurrentPositionArray[virusCurrentPositionArray.length - 1] % width)
+    const leftWall = virusCurrentPositionArray[0] % width !== 0
+
+
+    const moveRight = setInterval(() => {
+      console.log('Move from', virusCurrentPositionArray)
       virusCurrentPositionArray.forEach(position => {
         cells[position].classList.remove(virusClass)
       })
@@ -76,23 +81,17 @@ function init(){
       virusCurrentPositionArray.forEach(position => {
         cells[position].classList.add(virusClass)
       })
-    }, 1000 / 2)
-  
 
-
-    console.log('After:', virusCurrentPositionArray)
-    // virusCurrentPositionArray.forEach(position => {
-    //   setInterval(() => {
-    //     console.log('Virus at:', position)
-    //     cells[position].classList.remove(virusClass)
-    //     virusCurrentPositionArray = []
-    //     position++
-    //     virusCurrentPositionArray.push(position)
-    //     console.log('New Array', virusCurrentPositionArray)
-    //   }, 5000)
-    // })
+      if (virusCurrentPositionArray[virusCurrentPositionArray.length - 1] % width === width - 1) {
+        direction *= -1
+      } else if (virusCurrentPositionArray[0] % width === 0){
+        direction *= -1
+      }
+    }, 1000)
   }
   
+  console.log(44 % 15)
+
 
   //Function to move character and fire 
   function movementAndFire(event) {
@@ -150,7 +149,7 @@ function init(){
   //Set up fucntions
   function startUpGame() {
     addVirusStart(virusStartPosition)
-    VirusMovementRight()
+    VirusMovement()
     // console.log('Start Tiles:', cells) 
   }
 
