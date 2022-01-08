@@ -1,6 +1,10 @@
 function init(){
   //DOM Elements
   const start = document.querySelector('#start-button')
+  const reset = document.querySelector('#reset-button')
+  const live = document.querySelector('#live-counter')
+  const score = document.querySelector('#score')
+  let scoreNumber = 0
 
   //Grid variables
   const grid = document.querySelector('#grid')
@@ -47,7 +51,8 @@ function init(){
     cells[position].classList.remove(charClass)
   }
 
-  //Add/Remove Virus
+  //VIRUS FUNCTIONS:
+  //Add Viruses
   function addVirusStart(position) {
     for (let i = 0; i < 8; i++) {
       cells[position + i].classList.add(virusClass)
@@ -60,12 +65,15 @@ function init(){
     console.log('Virus Positons:', virusCurrentPositionArray)
   }
 
+  //Remove Viruses
   function removeVirus(position) {
     cells[position].classList.remove(virusClass)
-  
     const collided = virusCurrentPositionArray.indexOf(position)
     virusCurrentPositionArray.splice(collided, 1)
-    console.log(virusCurrentPositionArray)
+    // console.log(virusCurrentPositionArray)
+    scoreNumber += 1000
+    score.innerHTML = scoreNumber
+    
   }
 
   //Virus Movment
@@ -87,12 +95,13 @@ function init(){
         moveLineDown()
       } if (virusCurrentPositionArray.length === 0) {
         clearInterval(movementInterval)
-        gameWin()
+        gameFinished()
       }
       console.log('Interval Running')
     }, virusSpeed)
   }
 
+  //Virus Move down a line
   function moveLineDown() {
     setTimeout(() => {
 
@@ -152,13 +161,15 @@ function init(){
     }, 1000 / 20)   
   }
   
+  //Fire hits a virus
   function fireVirusCollision(location) {
     removeVirus(location)
     cells[location].classList.remove(fireClass)
-  }
+  } 
+
   
-  function gameWin() {
-    window.alert('You won the game!')
+  function gameFinished() {
+    window.alert(`You won the game!\n Final score:${scoreNumber}`)
   }
 
   //Linking keyboard presses to function:
