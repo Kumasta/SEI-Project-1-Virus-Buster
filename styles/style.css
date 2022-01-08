@@ -67,6 +67,13 @@ body {
   cursor: crosshair;
 }
 
+.emptyCharacter {
+  background-image: url("/Assets/Red-Needle2Empty.gif");
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: crosshair;
+}
+
 .fire {
   background-image: url("/Assets/Missile-red.gif");
   background-repeat: no-repeat;

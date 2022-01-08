@@ -24,7 +24,9 @@ function init(){
   const virusLinesNumber = 3
   const virusEnemyAmount = 10
   //?? How to update the speed value?
-  let virusSpeed = 1000
+  let diffuculty = 1
+  let virusSpeed = 1000 
+  virusSpeed /= diffuculty
   let virusCurrentPositionArray = []
   let direction = 1
 
@@ -34,7 +36,7 @@ function init(){
   let fireMovement = fireSpawnPostion
 
   //Grid generate function
-  function makegrid(charCurrentPosition) {
+  function makegrid() {
     for (let i = 0; i < cellCount; i++) {
       const gridCell = document.createElement('div')
       gridCell.innerHTML = i
@@ -101,7 +103,7 @@ function init(){
         clearInterval(movementInterval)
         gameFinished()
       }
-      console.log('Interval Running')
+      console.log(virusSpeed)
     }, virusSpeed)
   }
 
@@ -117,10 +119,9 @@ function init(){
       virusCurrentPositionArray.forEach(position => {
         cells[position].classList.add(virusClass)
       })  
+      diffuculty += 1
+      console.log('Dificulty', diffuculty)
     }, virusSpeed)
-    //?? This speed ramp up is not working in real time with this update 
-    virusSpeed *= 0.8 
-    console.log(virusSpeed)
   }
 
   //Function to move character and fire 
@@ -150,6 +151,7 @@ function init(){
 
   //Fire movment function, will stop as it reaches the top row. 
   function fireMove(location) {
+    charImageChange()
     const fireTime = setInterval(() => {
       cells[location].classList.remove(fireClass) //Removes previous image of fire
       cells[location - width].classList.add(fireClass) //Add new image on new row above. 
@@ -172,6 +174,14 @@ function init(){
     removeVirus(location)
     cells[location].classList.remove(fireClass)
   } 
+
+  function charImageChange() {
+    const animationPosition = charCurrentPosition
+    cells[animationPosition].classList.add('emptyCharacter')
+    setTimeout(() => {
+      cells[animationPosition].classList.remove('emptyCharacter')
+    }, 50)
+  }
 
   
   function gameFinished() {
