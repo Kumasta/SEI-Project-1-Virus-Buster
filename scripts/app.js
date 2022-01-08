@@ -1,6 +1,6 @@
 function init(){
   //DOM Elements
-  const start = document.querySelector('#start')
+  const start = document.querySelector('#start-button')
 
   //Grid variables
   const grid = document.querySelector('#grid')
@@ -47,8 +47,7 @@ function init(){
   function addVirus(position) {
     for (let i = 0; i < 8; i++) {
       cells[position + i].classList.add(virusClass)
-      virusCurrentPosition = position
-      console.log(virusCurrentPosition)
+      virusCurrentPosition = position + i
     }
   }
 
@@ -89,7 +88,8 @@ function init(){
       cells[location].classList.remove(fireClass) //Removes previous image of fire
       cells[location - width].classList.add(fireClass) //Add new image on new row above. 
       location -= width
-      if (location === virusCurrentPosition) {
+      console.log('Virus Location:', cells[location].className, cells[location].innerHTML)
+      if (cells[location].className === 'virus fire') {
         fireVirusCollision(location)
         clearInterval(fireTime)
       } else if (location < width) { //checks to see if it reaches the top row
@@ -106,14 +106,22 @@ function init(){
     cells[location].classList.remove(fireClass)
   }
   
+  console.log(cells.classList)
 
   //Linking keyboard presses to function:
   window.addEventListener('keyup', movementAndFire)
 
   //Set up fucntions
-  makegrid(charCurrentPosition)
-  addVirus(virusStartPosition)
-  console.log(cells)
+  function startUpGame() {
+    addVirus(virusStartPosition)
+    console.log(cells) 
+  }
+
+  //Button Events
+  start.addEventListener('click', startUpGame)
+  
+  makegrid(charCurrentPosition) 
+
 }
 
 
