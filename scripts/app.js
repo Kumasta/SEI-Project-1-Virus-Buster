@@ -17,7 +17,7 @@ function init(){
   //Virus Variables
   const virusClass = 'virus'
   const virusStartPosition = 33
-  let virusCurrentPosition = virusStartPosition
+  const virusCurrentPositionArray = []
 
   //Fire shot Varaibles
   const fireClass = 'fire'
@@ -47,13 +47,20 @@ function init(){
   function addVirus(position) {
     for (let i = 0; i < 8; i++) {
       cells[position + i].classList.add(virusClass)
-      virusCurrentPosition = position + i
+      virusCurrentPositionArray.push(position + i)
+      console.log('Virus Positons:', virusCurrentPositionArray)
     }
   }
-
   function removeVirus(position) {
     cells[position].classList.remove(virusClass)
-    virusCurrentPosition = null
+    // virusCurrentPosition = null
+  }
+
+  //Virus Movment
+  function VirusMovement() {
+    setInterval(() => {
+      
+    }, 1000)
   }
 
   //Function to move character and fire 
@@ -87,8 +94,9 @@ function init(){
       cells[location].classList.remove(fireClass) //Removes previous image of fire
       cells[location - width].classList.add(fireClass) //Add new image on new row above. 
       location -= width
-      console.log('Virus Location:', cells[location].className, cells[location].innerHTML)
-      if (cells[location].className === 'virus fire') {
+      // console.log('Virus Location:', cells[location].className, cells[location].innerHTML)
+      console.log(cells.classList)
+      if (cells[location].className === 'virus fire') { //Checks to see if atile has both the virus && fire class. 
         fireVirusCollision(location)
         clearInterval(fireTime)
       } else if (location < width) { //checks to see if it reaches the top row
@@ -105,7 +113,6 @@ function init(){
     cells[location].classList.remove(fireClass)
   }
   
-  console.log(cells.classList)
 
   //Linking keyboard presses to function:
   window.addEventListener('keyup', movementAndFire)
@@ -113,6 +120,7 @@ function init(){
   //Set up fucntions
   function startUpGame() {
     addVirus(virusStartPosition)
+    VirusMovement()
     console.log(cells) 
   }
 
