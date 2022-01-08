@@ -57,12 +57,15 @@ function init(){
       // virusCurrentPositionArray.sort((a, b) => {
       //   return b - a
       // })
-      // console.log('Virus Positons:', virusCurrentPositionArray)
+      console.log('Virus Positons:', virusCurrentPositionArray)
     }
   }
   function removeVirus(position) {
     cells[position].classList.remove(virusClass)
-    // virusCurrentPosition = null // Change this into a function that will slice out the array index of that position
+  
+    const collided = virusCurrentPositionArray.indexOf(position)
+    virusCurrentPositionArray.splice(collided, 1)
+    console.log('After Colision', collided)
   }
 
   //Virus Movment
