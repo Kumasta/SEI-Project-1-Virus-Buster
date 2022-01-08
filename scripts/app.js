@@ -1,11 +1,13 @@
 function init(){
-
+  //DOM Elements
+  const start = document.querySelector('#start')
 
   //Grid variables
   const grid = document.querySelector('#grid')
   const width = 15
   const cellCount = width * width
   const cells = []
+  
 
   //Player Char Varaibles
   const charClass = 'character'
@@ -14,7 +16,7 @@ function init(){
 
   //Virus Variables
   const virusClass = 'virus'
-  const virusStartPosition = 34
+  const virusStartPosition = 33
   let virusCurrentPosition = virusStartPosition
 
   //Fire shot Varaibles
@@ -43,9 +45,11 @@ function init(){
 
   //Add/Remove Virus
   function addVirus(position) {
-    cells[position].classList.add(virusClass)
-    virusCurrentPosition = position
-    console.log(virusCurrentPosition)
+    for (let i = 0; i < 8; i++) {
+      cells[position + i].classList.add(virusClass)
+      virusCurrentPosition = position
+      console.log(virusCurrentPosition)
+    }
   }
 
   function removeVirus(position) {
@@ -109,6 +113,7 @@ function init(){
   //Set up fucntions
   makegrid(charCurrentPosition)
   addVirus(virusStartPosition)
+  console.log(cells)
 }
 
 
