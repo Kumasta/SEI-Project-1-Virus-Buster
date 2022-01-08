@@ -44,10 +44,12 @@ function init(){
   }
 
   //Add/Remove Virus
-  function addVirus(position) {
+  function addVirusStart(position) {
     for (let i = 0; i < 8; i++) {
       cells[position + i].classList.add(virusClass)
+      cells[position + width + i].classList.add(virusClass)
       virusCurrentPositionArray.push(position + i)
+      virusCurrentPositionArray.push(position + width +  i)
       console.log('Virus Positons:', virusCurrentPositionArray)
     }
   }
@@ -57,11 +59,14 @@ function init(){
   }
 
   //Virus Movment
-  function VirusMovement() {
-    setInterval(() => {
-      
-    }, 1000)
-  }
+  // function VirusMovementRight() {
+  //   setInterval(() => {
+  //     virusCurrentPositionArray.forEach(position => {
+  //       cells[position].classList.remove(virusClass)
+  //       cells[position++].classList.add(virusClass)
+  //     })
+  //   }, 5000)
+  // }
 
   //Function to move character and fire 
   function movementAndFire(event) {
@@ -95,7 +100,6 @@ function init(){
       cells[location - width].classList.add(fireClass) //Add new image on new row above. 
       location -= width
       // console.log('Virus Location:', cells[location].className, cells[location].innerHTML)
-      console.log(cells.classList)
       if (cells[location].className === 'virus fire') { //Checks to see if atile has both the virus && fire class. 
         fireVirusCollision(location)
         clearInterval(fireTime)
@@ -119,9 +123,9 @@ function init(){
 
   //Set up fucntions
   function startUpGame() {
-    addVirus(virusStartPosition)
-    VirusMovement()
-    console.log(cells) 
+    addVirusStart(virusStartPosition)
+    VirusMovementRight()
+    // console.log('Start Tiles:', cells) 
   }
 
   //Button Events
