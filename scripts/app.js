@@ -3,13 +3,13 @@ function init(){
 
   //Grid variables
   const grid = document.querySelector('#grid')
-  const width = 10
+  const width = 15
   const cellCount = width * width
   const cells = []
 
   //Player Char Varaibles
   const charClass = 'character'
-  const startPosition = 94
+  const startPosition = 217 
   let charCurrentPosition = startPosition
 
   //Virus Variables
@@ -19,7 +19,7 @@ function init(){
 
   //Fire shot Varaibles
   const fireClass = 'fire'
-  const fireSpawnPostion = charCurrentPosition - 10
+  const fireSpawnPostion = charCurrentPosition - width
   let fireMovement = fireSpawnPostion
 
   //Grid generate function
@@ -44,8 +44,8 @@ function init(){
   //Add/Remove Virus
   function addVirus() {
     let randomNumber = Math.floor(Math.random() * width * 3) + 20
-    if (randomNumber < 19) {
-      randomNumber += 20
+    if (randomNumber < 29) {
+      randomNumber += width * 2
     }
     cells[randomNumber].classList.add(virusClass)
     virusCurrentPosition = randomNumber
@@ -55,6 +55,7 @@ function init(){
   function removeVirus(position) {
     cells[position].classList.remove(virusClass)
     virusCurrentPosition = null
+    addVirus()
   }
 
   //Function to move character and fire 
@@ -77,8 +78,8 @@ function init(){
 
   //Function to spawn fire
   function fireShot(spawn){
-    cells[spawn - 10].classList.add(fireClass)
-    fireMovement = cells[spawn - 10].innerHTML
+    cells[spawn - width].classList.add(fireClass)
+    fireMovement = cells[spawn - width].innerHTML
     fireMove(fireMovement)
   }
 
@@ -86,8 +87,8 @@ function init(){
   function fireMove(location) {
     const fireTime = setInterval(() => {
       cells[location].classList.remove(fireClass) //Removes previous image of fire
-      cells[location - 10].classList.add(fireClass) //Add new image on new row above. 
-      location -= 10
+      cells[location - width].classList.add(fireClass) //Add new image on new row above. 
+      location -= width
       if (location === virusCurrentPosition) {
         fireVirusCollision(location)
         clearInterval(fireTime)
@@ -95,9 +96,9 @@ function init(){
         clearInterval(fireTime) //stops the Time Interval
         setTimeout(() => { //Waits one more interaval so you can see the fire on teh last row.
           cells[location].classList.remove(fireClass)
-        }, 1000 / 10)
+        }, 1000 / 20)
       } 
-    }, 1000 / 10)   
+    }, 1000 / 20)   
   }
   
   function fireVirusCollision(location) {

@@ -31,8 +31,8 @@ body {
 #grid div {
   border: 1px dotted black;
   flex-grow: 1;
-  height: 10%;
-  width: 10%;
+  height: 6.5%;
+  width: 6.5%;
 }
 
 .character {
