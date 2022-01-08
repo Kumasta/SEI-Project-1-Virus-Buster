@@ -23,7 +23,8 @@ function init(){
   const virusStartPosition = 33
   //Add number of virus lines varaibles to ramp up difficulty e.g. const virusLineNumber = 1
   // Use this in a for loop in addVirus() function
-  const virusSpeed = 1000 / 2
+  //?? How to update the speed value?
+  let virusSpeed = 1000
   let virusCurrentPositionArray = []
   let direction = 1
 
@@ -54,7 +55,7 @@ function init(){
   //Add Viruses
   function addVirusStart(position) {
     for (let i = 0; i < 8; i++) {
-      cells[position + i].classList.add(virusClass)
+      cells[position + width * 0 + i].classList.add(virusClass)
       cells[position + width + i].classList.add(virusClass)
       cells[position + width * 2 + i].classList.add(virusClass)
       virusCurrentPositionArray.push(position + i)
@@ -113,7 +114,9 @@ function init(){
         cells[position].classList.add(virusClass)
       })  
     }, virusSpeed)
-
+    //?? This speed ramp up is not working in real time with this update 
+    virusSpeed *= 0.8 
+    console.log(virusSpeed)
   }
 
   //Function to move character and fire 
