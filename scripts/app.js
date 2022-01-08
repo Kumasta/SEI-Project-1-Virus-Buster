@@ -14,7 +14,7 @@ function init(){
 
   //Virus Variables
   const virusClass = 'virus'
-  const virusStartPosition = 0
+  const virusStartPosition = 34
   let virusCurrentPosition = virusStartPosition
 
   //Fire shot Varaibles
@@ -42,13 +42,9 @@ function init(){
   }
 
   //Add/Remove Virus
-  function addVirus() {
-    let randomNumber = Math.floor(Math.random() * width * 3) + 20
-    if (randomNumber < 29) {
-      randomNumber += width * 2
-    }
-    cells[randomNumber].classList.add(virusClass)
-    virusCurrentPosition = randomNumber
+  function addVirus(position) {
+    cells[position].classList.add(virusClass)
+    virusCurrentPosition = position
     console.log(virusCurrentPosition)
   }
 
@@ -112,7 +108,7 @@ function init(){
 
   //Set up fucntions
   makegrid(charCurrentPosition)
-  addVirus()
+  addVirus(virusStartPosition)
 }
 
 
