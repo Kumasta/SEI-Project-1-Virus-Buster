@@ -51,9 +51,11 @@ function init(){
   function addVirusStart(position) {
     for (let i = 0; i < 8; i++) {
       cells[position + i].classList.add(virusClass)
-      // cells[position + width + i].classList.add(virusClass)
+      cells[position + width + i].classList.add(virusClass)
+      cells[position + width * 2 + i].classList.add(virusClass)
       virusCurrentPositionArray.push(position + i)
-      // virusCurrentPositionArray.push(position + width + i)
+      virusCurrentPositionArray.push(position + width + i)
+      virusCurrentPositionArray.push(position + width * 2 + i)
       // virusCurrentPositionArray.sort((a, b) => {
       //   return b - a
       // })
@@ -65,7 +67,6 @@ function init(){
   
     const collided = virusCurrentPositionArray.indexOf(position)
     virusCurrentPositionArray.splice(collided, 1)
-    console.log('After Colision', collided)
   }
 
   //Virus Movment
