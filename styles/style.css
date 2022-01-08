@@ -19,7 +19,8 @@ body {
   align-items: center;
   justify-content: center;
   border: 1px solid black;
-  color: aliceblue;
+  color: rgb(250, 202, 46);
+  background-color: rgb(245, 207, 138);
 }
 
 #banner-container {
@@ -47,7 +48,7 @@ body {
   width: 650px;
   margin-top: 25px;
   margin-bottom: 25px;
-  box-shadow: 0 0 20px 0 rgba(71, 254, 4, 0.616);
+  box-shadow: 0 0 20px 0 rgba(212, 4, 254, 0.616);
   /* border: 1px solid black; */
 }
 
@@ -67,7 +68,7 @@ body {
 }
 
 .fire {
-  background-image: url("/Assets/Rocket.png");
+  background-image: url("/Assets/Missile-red.gif");
   background-repeat: no-repeat;
   background-size: contain ;
   background-position: center;
@@ -76,9 +77,11 @@ body {
 
 
 .virus {
-  background-image: url("/Assets/VirusGIF.gif");
+  background-image: url("/Assets/Covid V4.gif");
+  object-fit: none;
   background-repeat: no-repeat;
   background-size: contain ;
   background-position: center;
   cursor: crosshair;
 }
+

@@ -20,9 +20,9 @@ function init(){
 
   //Virus Variables
   const virusClass = 'virus'
-  const virusStartPosition = 33
-  //Add number of virus lines varaibles to ramp up difficulty e.g. const virusLineNumber = 1
-  // Use this in a for loop in addVirus() function
+  const virusStartPosition = 17
+  const virusLinesNumber = 3
+  const virusEnemyAmount = 10
   //?? How to update the speed value?
   let virusSpeed = 1000
   let virusCurrentPositionArray = []
@@ -54,13 +54,17 @@ function init(){
   //VIRUS FUNCTIONS:
   //Add Viruses
   function addVirusStart(position) {
-    for (let i = 0; i < 8; i++) {
-      cells[position + width * 0 + i].classList.add(virusClass)
-      cells[position + width + i].classList.add(virusClass)
-      cells[position + width * 2 + i].classList.add(virusClass)
-      virusCurrentPositionArray.push(position + i)
-      virusCurrentPositionArray.push(position + width + i)
-      virusCurrentPositionArray.push(position + width * 2 + i)
+    for (let i = 0; i < virusEnemyAmount; i++) {
+      for (let y = 0; y < virusLinesNumber; y++) {
+        cells[position + width * y + i].classList.add(virusClass) 
+        virusCurrentPositionArray.push(position + width * y + i)
+      }
+      //Use this in a for loop to generate lines
+      // cells[position + width + i].classList.add(virusClass)
+      // cells[position + width * 2 + i].classList.add(virusClass)
+      // virusCurrentPositionArray.push(position + i)
+      // virusCurrentPositionArray.push(position + width + i)
+      // virusCurrentPositionArray.push(position + width * 2 + i)
     }
     console.log('Virus Positons:', virusCurrentPositionArray)
   }
