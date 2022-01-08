@@ -40,7 +40,6 @@ function init(){
       grid.appendChild(gridCell)
       cells.push(gridCell)
     }
-    addChar(charCurrentPosition)
   }
 
   //Add & Remove character functions
@@ -180,6 +179,7 @@ function init(){
     addVirusStart(virusStartPosition)
     VirusMovement()
     event.target.disable = true
+    addChar(charCurrentPosition)
     // console.log('Start Tiles:', cells) 
   }
 
