@@ -27,7 +27,7 @@ function init(){
   const virusEnemyAmount = 10
 
   //?? How to update the speed value?
-  let diffuculty = 1//??
+  let diffuculty = 2//??
   // let speed = 1 - (diffuculty / 10) //??
   console.log(diffuculty)//??
 
@@ -102,7 +102,7 @@ function init(){
         gameFinished()
       }
       // console.log(1000)//??
-    }, 1000) //??
+    }, 1000 / diffuculty) //??
   }
 
   //Virus Move down a line
@@ -122,10 +122,11 @@ function init(){
   function virusFire() {
     setInterval(() => { // Runs as the page loads as of now. Will run when start button is pushed
       if (virusCurrentPositionArray.length > 0) { //Checks to see if a virus is still on the grid
-        const randomVirusToFire = virusCurrentPositionArray[Math.floor(Math.random() * virusCurrentPositionArray.length)]
-        console.log(randomVirusToFire)
+        const randomVirusToFire = virusCurrentPositionArray[Math.floor(Math.random() * virusCurrentPositionArray.length)]  //Pull a postion number from the virus array
+        // console.log(randomVirusToFire)
+        cells[randomVirusToFire].classList.add('virusFire')
       }
-    }, 1000) 
+    }, 1000 / diffuculty) 
   }
   
   //Function to move character and fire 
