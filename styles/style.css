@@ -68,7 +68,7 @@ body {
 }
 
 .emptyCharacter {
-  background-image: url("/Assets/Red-Needle2.gif");
+  background-image: url("/Assets/Red-Needle2Empty.gif");
   background-repeat: no-repeat;
   background-size: contain;
   cursor: crosshair;

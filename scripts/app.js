@@ -15,20 +15,24 @@ function init(){
 
   //Player Char Varaibles
   const charClass = 'character'
-  const startPosition = 217 
+  const startPosition = 217 //Must be on the bottom line (210 - 224)
   let charCurrentPosition = startPosition
+  const fireSpeed = 15 // (1000 / num) How fast fire moves up the grid
 
   //Virus Variables
   const virusClass = 'virus'
+  // Change values below to change virus settings
   const virusStartPosition = 17
   const virusLinesNumber = 3
   const virusEnemyAmount = 10
+
   //?? How to update the speed value?
   let diffuculty = 1//??
   // let speed = 1 - (diffuculty / 10) //??
   console.log(diffuculty)//??
+
   let virusCurrentPositionArray = []
-  let direction = 1
+  let direction = 1 //right
 
   //Fire shot Varaibles
   const fireClass = 'fire'
@@ -65,7 +69,7 @@ function init(){
     console.log('Virus Positons:', virusCurrentPositionArray)
   }
 
-  //Remove Viruses
+  //Remove Viruses + add score   
   function removeVirus(position) {
     cells[position].classList.remove(virusClass)
     const collided = virusCurrentPositionArray.indexOf(position)
@@ -76,7 +80,7 @@ function init(){
     
   }
 
-  //Virus Movment
+  //Virus Movment > virus-fire
   function VirusMovement() {
     const movementInterval = setInterval(() => {
       virusCurrentPositionArray.forEach(position => {
@@ -104,12 +108,10 @@ function init(){
   //Virus Move down a line
   function moveLineDown() {
     setTimeout(() => {
-
       virusCurrentPositionArray.forEach(position => {
         cells[position].classList.remove(virusClass)
       })
       virusCurrentPositionArray = virusCurrentPositionArray.map(position => position + width)
-  
       virusCurrentPositionArray.forEach(position => {
         cells[position].classList.add(virusClass)
       })  
@@ -122,7 +124,6 @@ function init(){
     const left = 37
     const right = 39
     const fire = 32
-
     removeCha(charCurrentPosition)
     if (key === right && charCurrentPosition % width !== width - 1) {
       charCurrentPosition++
@@ -154,11 +155,11 @@ function init(){
         clearInterval(fireTime)
       } else if (location < width) { //checks to see if it reaches the top row
         clearInterval(fireTime) //stops the Time Interval
-        setTimeout(() => { //Waits one more interaval so you can see the fire on teh last row.
+        setTimeout(() => { //Waits one more interaval so you can see the fire on the last row.
           cells[location].classList.remove(fireClass)
-        }, 1000 / 20)
+        }, 1000 / fireSpeed)
       } 
-    }, 1000 / 20)   
+    }, 1000 / fireSpeed)   
   }
   
   //Fire hits a virus
@@ -167,6 +168,7 @@ function init(){
     cells[location].classList.remove(fireClass)
   } 
 
+  //Character animation for fire
   function charImageChange() {
     const animationPosition = charCurrentPosition
     cells[animationPosition].classList.add('emptyCharacter')
