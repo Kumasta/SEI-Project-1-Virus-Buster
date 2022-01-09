@@ -68,7 +68,7 @@ body {
 }
 
 .emptyCharacter {
-  background-image: url("/Assets/Red-Needle2Empty.gif");
+  background-image: url("/Assets/Red-Needle2.gif");
   background-repeat: no-repeat;
   background-size: contain;
   cursor: crosshair;
@@ -82,6 +82,14 @@ body {
   cursor: crosshair;
 }
 
+.virusFire {
+  background-image: url("/Assets/Virus-Missle-GIF.gif");
+  object-fit: none;
+  background-repeat: no-repeat;
+  background-size: contain ;
+  background-position: center;
+  cursor: crosshair;
+}
 
 .virus {
   background-image: url("/Assets/Covid V4.gif");

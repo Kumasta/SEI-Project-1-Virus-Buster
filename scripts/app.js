@@ -61,12 +61,6 @@ function init(){
         cells[position + width * y + i].classList.add(virusClass) 
         virusCurrentPositionArray.push(position + width * y + i)
       }
-      //Use this in a for loop to generate lines
-      // cells[position + width + i].classList.add(virusClass)
-      // cells[position + width * 2 + i].classList.add(virusClass)
-      // virusCurrentPositionArray.push(position + i)
-      // virusCurrentPositionArray.push(position + width + i)
-      // virusCurrentPositionArray.push(position + width * 2 + i)
     }
     console.log('Virus Positons:', virusCurrentPositionArray)
   }
@@ -197,15 +191,12 @@ function init(){
     VirusMovement(diffuculty)//??
     event.target.disable = true//??
     addChar(charCurrentPosition)
-    
     // console.log('Start Tiles:', cells) 
   }
 
   //Button Events
   start.addEventListener('click', startUpGame)
-  
-  makegrid(charCurrentPosition) 
-
+  makegrid() 
 }
 
 
