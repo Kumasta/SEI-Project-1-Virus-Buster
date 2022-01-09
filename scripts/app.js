@@ -24,9 +24,9 @@ function init(){
   const virusLinesNumber = 3
   const virusEnemyAmount = 10
   //?? How to update the speed value?
-  let diffuculty = 1
-  let virusSpeed = 1000 
-  virusSpeed /= diffuculty
+  let diffuculty = 1//??
+  // let speed = 1 - (diffuculty / 10) //??
+  console.log(diffuculty)//??
   let virusCurrentPositionArray = []
   let direction = 1
 
@@ -103,8 +103,8 @@ function init(){
         clearInterval(movementInterval)
         gameFinished()
       }
-      console.log(virusSpeed)
-    }, virusSpeed)
+      console.log(1000)//??
+    }, 1000) //??
   }
 
   //Virus Move down a line
@@ -119,9 +119,7 @@ function init(){
       virusCurrentPositionArray.forEach(position => {
         cells[position].classList.add(virusClass)
       })  
-      diffuculty += 1
-      console.log('Dificulty', diffuculty)
-    }, virusSpeed)
+    }, 500)
   }
 
   //Function to move character and fire 
@@ -194,9 +192,12 @@ function init(){
   //Set up fucntions
   function startUpGame(event) {
     addVirusStart(virusStartPosition)
-    VirusMovement()
-    event.target.disable = true
+    diffuculty += 1 //??
+    console.log('Dificulty', diffuculty)//??
+    VirusMovement(diffuculty)//??
+    event.target.disable = true//??
     addChar(charCurrentPosition)
+    
     // console.log('Start Tiles:', cells) 
   }
 
