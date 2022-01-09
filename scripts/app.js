@@ -149,7 +149,7 @@ function init(){
         cells[randomVirusToFire].classList.add(virusFireClass)
         virusFireMovement(randomVirusToFire)
       }
-    }, 1000 * 1) 
+    }, 1000 * 0.7) 
   }
 
   function virusFireMovement(location) {
@@ -172,6 +172,7 @@ function init(){
         setTimeout(() => { //Waits one more interaval so you can see the fire on the last row.
           cells[location].classList.remove(virusFireClass)
           console.log('TO style:', cells[location])
+          cells[location].classList.add('smoke-reverse')
           setTimeout(() => {
             cells[location].classList.remove('smoke-reverse')
           }, 500)

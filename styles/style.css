@@ -19,8 +19,8 @@ body {
   align-items: center;
   justify-content: center;
   border: 1px solid black;
-  color: rgb(250, 202, 46);
-  background-color: rgb(245, 207, 138);
+  color: rgb(26, 25, 25);
+  background-color: rgb(0, 0, 0);
 }
 
 #banner-container {
@@ -48,7 +48,7 @@ body {
   width: 650px;
   margin-top: 25px;
   margin-bottom: 25px;
-  /* box-shadow: 0 0 20px 0 rgba(212, 4, 254, 0.616); */
+  box-shadow: 0 0 30px 0 rgba(4, 254, 4, 0.616);
   /* border: 1px solid black; */
 }
 
