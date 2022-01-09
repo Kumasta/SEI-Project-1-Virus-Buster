@@ -101,7 +101,7 @@ function init(){
         clearInterval(movementInterval)
         gameFinished()
       }
-      console.log(1000)//??
+      // console.log(1000)//??
     }, 1000) //??
   }
 
@@ -118,6 +118,16 @@ function init(){
     }, 500)
   }
 
+  //Virus fire function
+  function virusFire() {
+    setInterval(() => { // Runs as the page loads as of now. Will run when start button is pushed
+      if (virusCurrentPositionArray.length > 0) { //Checks to see if a virus is still on the grid
+        const randomVirusToFire = virusCurrentPositionArray[Math.floor(Math.random() * virusCurrentPositionArray.length)]
+        console.log(randomVirusToFire)
+      }
+    }, 1000) 
+  }
+  
   //Function to move character and fire 
   function movementAndFire(event) {
     const key = event.keyCode 
@@ -177,13 +187,9 @@ function init(){
     }, 50)
   }
 
-  
   function gameFinished() {
     window.alert(`You won the game!\n Final score:${scoreNumber}`)
   }
-
-  //Linking keyboard presses to function:
-  window.addEventListener('keyup', movementAndFire)
 
   //Set up fucntions
   function startUpGame(event) {
@@ -193,12 +199,13 @@ function init(){
     VirusMovement(diffuculty)//??
     event.target.disable = true//??
     addChar(charCurrentPosition)
-    // console.log('Start Tiles:', cells) 
+    virusFire()
   }
+  makegrid() 
 
   //Button Events
   start.addEventListener('click', startUpGame)
-  makegrid() 
+  window.addEventListener('keyup', movementAndFire)
 }
 
 
