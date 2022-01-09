@@ -27,7 +27,7 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 50px;
+  height: 80px;
 }
 
 .banner-item {
@@ -48,7 +48,7 @@ body {
   width: 650px;
   margin-top: 25px;
   margin-bottom: 25px;
-  box-shadow: 0 0 20px 0 rgba(212, 4, 254, 0.616);
+  /* box-shadow: 0 0 20px 0 rgba(212, 4, 254, 0.616); */
   /* border: 1px solid black; */
 }
 
@@ -93,6 +93,25 @@ body {
 
 .virus {
   background-image: url("/Assets/Covid V4.gif");
+  object-fit: none;
+  background-repeat: no-repeat;
+  background-size: contain ;
+  background-position: center;
+  cursor: crosshair;
+}
+
+.smoke {
+  background-image: url("/Assets/SmokeGIF.gif");
+  transform: rotate(180deg);
+  object-fit: none;
+  background-repeat: no-repeat;
+  background-size: contain ;
+  background-position: center;
+  cursor: crosshair;
+}
+
+.smoke-reverse {
+  background-image: url("/Assets/SmokeGIF.gif");
   object-fit: none;
   background-repeat: no-repeat;
   background-size: contain ;

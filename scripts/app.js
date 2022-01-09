@@ -32,9 +32,8 @@ function init(){
   const virusEnemyAmount = 10
 
   //?? How to update the speed value?
-  let diffuculty = 2//??
+  let diffuculty = 1
   // let speed = 1 - (diffuculty / 10) //??
-  console.log(diffuculty)//??
 
   let virusCurrentPositionArray = []
   let direction = 1 //right
@@ -43,6 +42,17 @@ function init(){
   const fireClass = 'fire'
   const fireSpawnPostion = charCurrentPosition - width
   let fireMovement = fireSpawnPostion
+
+  //Set up fucntions
+  function startUpGame(event) {
+    addVirusStart(virusStartPosition)
+    diffuculty += 1 
+    console.log('Dificulty', diffuculty)
+    VirusMovement()
+    start.disabled = true
+    addChar(charCurrentPosition)
+    virusFire()
+  }
 
   //Grid generate function
   function makegrid() {
@@ -105,11 +115,16 @@ function init(){
       } else if (virusCurrentPositionArray[0] % width === 0){
         direction *= -1
         moveLineDown()
+      } else if (
+        virusCurrentPositionArray.forEach(position => {
+          cells[position] >= width * width - width 
+        })
+      ) {
+        //End game
       } if (virusCurrentPositionArray.length === 0) {
         clearInterval(movementInterval)
         gameFinished()
       }
-      // console.log(1000)//??
     }, 1000) //??
   }
 
@@ -134,7 +149,7 @@ function init(){
         cells[randomVirusToFire].classList.add(virusFireClass)
         virusFireMovement(randomVirusToFire)
       }
-    }, 1000 * 2) 
+    }, 1000 * 1) 
   }
 
   function virusFireMovement(location) {
@@ -156,6 +171,10 @@ function init(){
         clearInterval(virusFireInterval)
         setTimeout(() => { //Waits one more interaval so you can see the fire on the last row.
           cells[location].classList.remove(virusFireClass)
+          console.log('TO style:', cells[location])
+          setTimeout(() => {
+            cells[location].classList.remove('smoke-reverse')
+          }, 500)
         }, 1000 / 3)
       }
     }, 1000 / 3)
@@ -215,7 +234,12 @@ function init(){
         clearInterval(fireTime) //stops the Time Interval
         setTimeout(() => { //Waits one more interaval so you can see the fire on the last row.
           cells[location].classList.remove(fireClass)
+          cells[location].classList.add('smoke')
+          setTimeout(() => {
+            cells[location].classList.remove('smoke')
+          }, 500)
         }, 1000 / fireSpeed)
+
       } 
     }, 1000 / fireSpeed)   
   }
@@ -239,16 +263,6 @@ function init(){
     window.alert(`You won the game!\n Final score:${scoreNumber}`)
   }
 
-  //Set up fucntions
-  function startUpGame(event) {
-    addVirusStart(virusStartPosition)
-    diffuculty += 1 //??
-    console.log('Dificulty', diffuculty)//??
-    VirusMovement()//??
-    start.disabled = true//??
-    addChar(charCurrentPosition)
-    virusFire()
-  }
   makegrid() 
 
   //Button Events
