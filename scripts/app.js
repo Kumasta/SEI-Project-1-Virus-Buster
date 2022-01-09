@@ -142,8 +142,10 @@ function init(){
       // console.log('V fire:', location)
       if (cells[location].classList.value === 'character virusFire' || cells[location].classList.value === 'emptyCharacter character virusFire') {
         console.log('Player hit')
-        chaHit()
+        chaHit(location)
         cells[location].classList.remove(virusFireClass)
+        cells[location].classList.add('character')
+        console.log(cells[location].classList)
         clearInterval(virusFireInterval)
         removeCha(location)
         //?? NEED a function for loosing lives. 
@@ -156,12 +158,19 @@ function init(){
     }, 1000 / 3)
   }
 
-  function chaHit() {
+  //Player hit events
+  function chaHit(location) {
     lives -= 1
     livesSpan.innerText = ('💉').repeat(lives)
     if (lives <= 0) {
-      window.alert('Game Over!')
+      setTimeout(() => {
+        window.alert('Game Over!') 
+      }, 1000)
     }
+    cells[location].innerHTML = '<img src="/Assets/BoomGIF4.gif" alt="Boom GIF">'
+    setTimeout(() => {
+      cells[location].innerHTML = null
+    }, 500)
   }
   
   //Function to move character and fire 
