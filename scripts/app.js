@@ -102,7 +102,7 @@ function init(){
         gameFinished()
       }
       // console.log(1000)//??
-    }, 1000 / diffuculty) //??
+    }, 1000) //??
   }
 
   //Virus Move down a line
@@ -161,7 +161,7 @@ function init(){
       cells[location - width].classList.add(fireClass) //Add new image on new row above. 
       location -= width
       // console.log('Virus Location:', cells[location].className, cells[location].innerHTML)
-      if (cells[location].className === 'virus fire') { //Checks to see if atile has both the virus && fire class. 
+      if (cells[location].className === 'virus fire' || cells[location].className === 'virus virus fire') { //Checks to see if atile has both the virus && fire class. 
         fireVirusCollision(location)
         clearInterval(fireTime)
       } else if (location < width) { //checks to see if it reaches the top row
@@ -197,7 +197,7 @@ function init(){
     addVirusStart(virusStartPosition)
     diffuculty += 1 //??
     console.log('Dificulty', diffuculty)//??
-    VirusMovement(diffuculty)//??
+    // VirusMovement()//??
     event.target.disable = true//??
     addChar(charCurrentPosition)
     virusFire()
