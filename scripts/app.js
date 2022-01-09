@@ -228,7 +228,7 @@ function init(){
       cells[location - width].classList.add(fireClass) //Add new image on new row above. 
       location -= width
       // console.log('Virus Location:', cells[location].className, cells[location].innerHTML)
-      if (cells[location].className === 'virus fire' || cells[location].className === 'virus virus fire') { //Checks to see if atile has both the virus && fire class. 
+      if (cells[location].className === 'virus fire' || cells[location].className === 'virusFire virus fire') { //Checks to see if atile has both the virus && fire class. 
         fireVirusCollision(location)
         clearInterval(fireTime)
       } else if (location < width) { //checks to see if it reaches the top row
