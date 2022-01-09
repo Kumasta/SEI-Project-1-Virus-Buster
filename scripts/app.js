@@ -233,7 +233,7 @@ function init(){
     diffuculty += 1 //??
     console.log('Dificulty', diffuculty)//??
     VirusMovement()//??
-    event.target.disable = true//??
+    start.disabled = true//??
     addChar(charCurrentPosition)
     virusFire()
   }
@@ -242,6 +242,13 @@ function init(){
   //Button Events
   start.addEventListener('click', startUpGame)
   window.addEventListener('keyup', movementAndFire)
+
+  //Function that stops spacebar scrolling the window down
+  window.addEventListener('keydown', (e) => {  
+    if (e.keyCode === 32 && e.target === document.body) {  
+      e.preventDefault()
+    }  
+  })
 }
 
 
