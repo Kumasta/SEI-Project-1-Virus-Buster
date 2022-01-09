@@ -2,7 +2,7 @@ function init(){
   //DOM Elements
   const start = document.querySelector('#start-button')
   const reset = document.querySelector('#reset-button')
-  const live = document.querySelector('#live-counter')
+  const livesSpan = document.querySelector('#live-counter')
   const score = document.querySelector('#score')
   let scoreNumber = 0
 
@@ -12,18 +12,23 @@ function init(){
   const cellCount = width * width
   const cells = []
   
-
   //Player Char Varaibles
   const charClass = 'character'
   const startPosition = 217 //Must be on the bottom line (210 - 224)
   let charCurrentPosition = startPosition
   const fireSpeed = 15 // (1000 / num) How fast fire moves up the grid
 
+  //Lives variables
+  const startLives = 3
+  let lives = startLives 
+  livesSpan.innerText = ('💉').repeat(startLives)
+
   //Virus Variables
   const virusClass = 'virus'
+  const virusFireClass = 'virusFire'
   // Change values below to change virus settings
   const virusStartPosition = 17
-  const virusLinesNumber = 3
+  const virusLinesNumber = 2
   const virusEnemyAmount = 10
 
   //?? How to update the speed value?
@@ -123,10 +128,40 @@ function init(){
     setInterval(() => { // Runs as the page loads as of now. Will run when start button is pushed
       if (virusCurrentPositionArray.length > 0) { //Checks to see if a virus is still on the grid
         const randomVirusToFire = virusCurrentPositionArray[Math.floor(Math.random() * virusCurrentPositionArray.length)]  //Pull a postion number from the virus array
-        // console.log(randomVirusToFire)
-        cells[randomVirusToFire].classList.add('virusFire')
+        cells[randomVirusToFire].classList.add(virusFireClass)
+        virusFireMovement(randomVirusToFire)
       }
-    }, 1000 / diffuculty) 
+    }, 1000 * 2) 
+  }
+
+  function virusFireMovement(location) {
+    const virusFireInterval = setInterval(() => {
+      cells[location].classList.remove(virusFireClass)
+      cells[location + width].classList.add(virusFireClass)
+      location += width
+      // console.log('V fire:', location)
+      if (cells[location].classList.value === 'character virusFire' || cells[location].classList.value === 'emptyCharacter character virusFire') {
+        console.log('Player hit')
+        chaHit()
+        cells[location].classList.remove(virusFireClass)
+        clearInterval(virusFireInterval)
+        removeCha(location)
+        //?? NEED a function for loosing lives. 
+      } else if (location >= width * width - width) {
+        clearInterval(virusFireInterval)
+        setTimeout(() => { //Waits one more interaval so you can see the fire on the last row.
+          cells[location].classList.remove(virusFireClass)
+        }, 1000 / 3)
+      }
+    }, 1000 / 3)
+  }
+
+  function chaHit() {
+    lives -= 1
+    livesSpan.innerText = ('💉').repeat(lives)
+    if (lives <= 0) {
+      window.alert('Game Over!')
+    }
   }
   
   //Function to move character and fire 
@@ -142,6 +177,7 @@ function init(){
       charCurrentPosition--
     } else if (key === fire) {
       fireShot(charCurrentPosition)
+      charImageChange()
     }
     addChar(charCurrentPosition)
   }
@@ -155,7 +191,6 @@ function init(){
 
   //Fire movment function, will stop as it reaches the top row. 
   function fireMove(location) {
-    charImageChange()
     const fireTime = setInterval(() => {
       cells[location].classList.remove(fireClass) //Removes previous image of fire
       cells[location - width].classList.add(fireClass) //Add new image on new row above. 
@@ -197,7 +232,7 @@ function init(){
     addVirusStart(virusStartPosition)
     diffuculty += 1 //??
     console.log('Dificulty', diffuculty)//??
-    // VirusMovement()//??
+    VirusMovement()//??
     event.target.disable = true//??
     addChar(charCurrentPosition)
     virusFire()
