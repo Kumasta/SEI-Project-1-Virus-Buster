@@ -79,10 +79,13 @@ function init(){
     cells[position].classList.remove(virusClass)
     const collided = virusCurrentPositionArray.indexOf(position)
     virusCurrentPositionArray.splice(collided, 1)
-    // console.log(virusCurrentPositionArray)
+  
     scoreNumber += 1000
     score.innerHTML = scoreNumber
-    
+    cells[position].innerHTML = '<img src="/Assets/BoomGIF3.gif" alt="Boom GIF">'
+    setTimeout(() => {
+      cells[position].innerHTML = null
+    }, 500)
   }
 
   //Virus Movment > virus-fire
