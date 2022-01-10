@@ -24,7 +24,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgb(26, 25, 25);
+  color: rgba(26, 25, 25, 0);
   border-radius: 25px;
   background-image: url('/Assets/Background-2v2.jpg');
   background-repeat: no-repeat ;
@@ -103,6 +103,25 @@ div#grid {
   width: 6.5%;
 }
 
+.smoke {
+  background-image: url("/Assets/SmokeGIF.gif");
+  transform: rotate(180deg);
+  object-fit: none;
+  background-repeat: no-repeat;
+  background-size: contain ;
+  background-position: center;
+  cursor: crosshair;
+}
+
+.smoke-reverse {
+  background-image: url("/Assets/SmokeGIF.gif");
+  object-fit: none;
+  background-repeat: no-repeat;
+  background-size: contain ;
+  background-position: center;
+  cursor: crosshair;
+}
+
 .character {
   background-image: url("/Assets/Red-Needle2.gif");
   background-repeat: no-repeat;
@@ -145,24 +164,7 @@ div#grid {
   cursor: crosshair;
 }
 
-.smoke {
-  background-image: url("/Assets/SmokeGIF.gif");
-  transform: rotate(180deg);
-  object-fit: none;
-  background-repeat: no-repeat;
-  background-size: contain ;
-  background-position: center;
-  cursor: crosshair;
-}
 
-.smoke-reverse {
-  background-image: url("/Assets/SmokeGIF.gif");
-  object-fit: none;
-  background-repeat: no-repeat;
-  background-size: contain ;
-  background-position: center;
-  cursor: crosshair;
-}
 
 img {
   height: 100%;
