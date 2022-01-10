@@ -28,7 +28,7 @@ function init(){
   const virusFireClass = 'virusFire'
   // Change values below to change virus settings
   const virusStartPosition = 16
-  const virusLinesNumber = 4
+  const virusLinesNumber = 2
   const virusEnemyAmount = 10
 
   //?? How to update the speed value?
@@ -73,7 +73,7 @@ function init(){
       scoreNumber = 0
       score.innerHTML = 0
     }, 500)
- 
+
     lives = startLives
     livesSpan.innerText = ('💉').repeat(startLives)
 
@@ -173,7 +173,7 @@ function init(){
   //Virus fire function
   function virusFire() {
     const virusFireInvterval = setInterval(() => { // Runs as the page loads as of now. Will run when start button is pushed
-      if (virusCurrentPositionArray[0] >= width * width - width) {
+      if (virusCurrentPositionArray[0] >= width * width - width || virusCurrentPositionArray.length === 0) {
         clearInterval(virusFireInvterval)
       } else if (virusCurrentPositionArray.length > 0) { //Checks to see if a virus is still on the grid
         const randomVirusToFire = virusCurrentPositionArray[Math.floor(Math.random() * virusCurrentPositionArray.length)]  //Pull a postion number from the virus array
