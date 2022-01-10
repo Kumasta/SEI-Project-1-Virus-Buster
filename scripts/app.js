@@ -27,8 +27,8 @@ function init(){
   const virusClass = 'virus'
   const virusFireClass = 'virusFire'
   // Change values below to change virus settings
-  const virusStartPosition = 196
-  const virusLinesNumber = 1
+  const virusStartPosition = 16
+  const virusLinesNumber = 3
   const virusEnemyAmount = 10
 
   //?? How to update the speed value?
@@ -190,10 +190,10 @@ function init(){
         window.alert('Game Over!') 
       }, 1000)
     }
-    cells[location].innerHTML = '<img src="/Assets/BoomGIF4.gif" alt="Boom GIF">'
+    cells[location].innerHTML = '<img src="/Assets/BoomGIF2.gif" alt="Boom GIF">'
     setTimeout(() => {
       cells[location].innerHTML = null
-    }, 500)
+    }, 1000)
   }
   
   //Function to move character and fire 

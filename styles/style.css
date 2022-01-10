@@ -4,24 +4,28 @@
 
 body {
   height: 100vh;
-  margin: 0;
-  background-color: black;
+  background-image: url('/Assets/Covid-Background2.jpeg');
+  background-repeat: no-repeat ;
+  background-position: center;
+  background-size: cover;
+
 }
 
 #game-container {
   width: 700px;
-  margin: 0 auto;
-  border: 5px solid black;
-  margin-top: 5%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 #grid-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid black;
   color: rgb(26, 25, 25);
-  background-color: rgb(0, 0, 0);
+  border-radius: 25px;
   background-image: url('/Assets/Background-2v2.jpg');
   background-repeat: no-repeat ;
   background-position: center;
@@ -31,7 +35,7 @@ body {
 #banner-container {
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  align-items:center;
   height: 80px;
   background-image: url('/Assets/Banner.jpg');
   background-repeat: no-repeat ;
@@ -39,7 +43,9 @@ body {
   color: white;
   background-size: cover;
   border: 5px solid limegreen;
-  margin-bottom: 5px;
+  box-shadow: 0 0 30px 0 rgb(60, 255, 0);
+  border-radius: 25px;
+  margin-bottom: 25px;
 }
 
 .banner-item {
@@ -52,6 +58,26 @@ body {
 
 .banner-text {
   text-align: center;
+  margin-bottom: 25px;
+}
+
+span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 1px;
+}
+
+.varaible-text {
+  background-color: rgba(185, 185, 185, 0.562);
+  border-radius: 10px;
+  min-width: 100px;
+  width: 100%;
+  height: 30px;
+}
+
+#score {
+  padding-top: 5px;
 }
 
 div#grid {
@@ -64,13 +90,14 @@ div#grid {
   width: 650px;
   margin-top: 25px;
   margin-bottom: 25px;
-  box-shadow: 0 0 30px 0 rgba(4, 254, 4, 0.616);
+  box-shadow: 0 0 60px 0 rgb(0, 17, 255);
+  border-radius: 10px;
   /* border: 1px solid black; */
 }
 
 
 #grid div {
-  border: 1px dotted black;
+  /* border: 1px dotted black; */
   flex-grow: 1;
   height: 6.5%;
   width: 6.5%;
@@ -80,6 +107,7 @@ div#grid {
   background-image: url("/Assets/Red-Needle2.gif");
   background-repeat: no-repeat;
   background-size: contain;
+  background-position: center;
   cursor: crosshair;
 }
 
@@ -87,11 +115,12 @@ div#grid {
   background-image: url("/Assets/Red-Needle2Empty.gif");
   background-repeat: no-repeat;
   background-size: contain;
+  background-position: center;
   cursor: crosshair;
 }
 
 .fire {
-  background-image: url("/Assets/Missile-red.gif");
+  background-image: url("/Assets/noemi-coute-laser2.gif");
   background-repeat: no-repeat;
   background-size: contain ;
   background-position: center;
@@ -99,10 +128,10 @@ div#grid {
 }
 
 .virusFire {
-  background-image: url("/Assets/Virus-Missle-GIF.gif");
+  background-image: url("/Assets/red-covid-gif.gif");
   object-fit: none;
   background-repeat: no-repeat;
-  background-size: contain ;
+  background-size: 1em ;
   background-position: center;
   cursor: crosshair;
 }
