@@ -27,8 +27,8 @@ function init(){
   const virusClass = 'virus'
   const virusFireClass = 'virusFire'
   // Change values below to change virus settings
-  const virusStartPosition = 17
-  const virusLinesNumber = 4
+  const virusStartPosition = 196
+  const virusLinesNumber = 1
   const virusEnemyAmount = 10
 
   //?? How to update the speed value?
@@ -109,23 +109,23 @@ function init(){
         cells[position].classList.add(virusClass)
       })
 
+      //Line direction and line down
       if (virusCurrentPositionArray[virusCurrentPositionArray.length - 1] % width === width - 1) {
         direction *= -1
         moveLineDown()
-      } else if (virusCurrentPositionArray[0] % width === 0){
+      } else if (virusCurrentPositionArray[0] % width === 0) {
         direction *= -1
         moveLineDown()
-      } else if (
-        virusCurrentPositionArray.forEach(position => {
-          cells[position] >= width * width - width 
-        })
-      ) {
-        //End game
-      } if (virusCurrentPositionArray.length === 0) {
+      } 
+      //End game (Win)      
+      if (virusCurrentPositionArray.length === 0) {
         clearInterval(movementInterval)
         gameFinished()
-      }
-    }, 1000) //??
+      } else if (virusCurrentPositionArray[0] >= width * width - width) {
+        clearInterval(movementInterval)
+        console.log('The Pit')
+      } 
+    }, 1000 / 2)
   }
 
   //Virus Move down a line
@@ -143,8 +143,10 @@ function init(){
 
   //Virus fire function
   function virusFire() {
-    setInterval(() => { // Runs as the page loads as of now. Will run when start button is pushed
-      if (virusCurrentPositionArray.length > 0) { //Checks to see if a virus is still on the grid
+    const virusFireInvterval = setInterval(() => { // Runs as the page loads as of now. Will run when start button is pushed
+      if (virusCurrentPositionArray[0] >= width * width - width) {
+        clearInterval(virusFireInvterval)
+      } else if (virusCurrentPositionArray.length > 0) { //Checks to see if a virus is still on the grid
         const randomVirusToFire = virusCurrentPositionArray[Math.floor(Math.random() * virusCurrentPositionArray.length)]  //Pull a postion number from the virus array
         cells[randomVirusToFire].classList.add(virusFireClass)
         virusFireMovement(randomVirusToFire)
