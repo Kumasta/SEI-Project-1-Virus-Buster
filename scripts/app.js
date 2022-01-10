@@ -28,7 +28,7 @@ function init(){
   const virusFireClass = 'virusFire'
   // Change values below to change virus settings
   const virusStartPosition = 17
-  const virusLinesNumber = 2
+  const virusLinesNumber = 4
   const virusEnemyAmount = 10
 
   //?? How to update the speed value?
@@ -158,12 +158,11 @@ function init(){
       cells[location + width].classList.add(virusFireClass)
       location += width
       // console.log('V fire:', location)
-      if (cells[location].classList.value === 'character virusFire' || cells[location].classList.value === 'emptyCharacter character virusFire') {
+      if (cells[location].classList.contains(charClass)) {
         console.log('Player hit')
         chaHit(location)
         cells[location].classList.remove(virusFireClass)
         cells[location].classList.add('character')
-        console.log(cells[location].classList)
         clearInterval(virusFireInterval)
         removeCha(location)
         //?? NEED a function for loosing lives. 
@@ -171,14 +170,13 @@ function init(){
         clearInterval(virusFireInterval)
         setTimeout(() => { //Waits one more interaval so you can see the fire on the last row.
           cells[location].classList.remove(virusFireClass)
-          console.log('TO style:', cells[location])
           cells[location].classList.add('smoke-reverse')
           setTimeout(() => {
             cells[location].classList.remove('smoke-reverse')
           }, 500)
-        }, 1000 / 3)
+        }, 1000 / 4)
       }
-    }, 1000 / 3)
+    }, 1000 / 4)
   }
 
   //Player hit events
@@ -228,7 +226,7 @@ function init(){
       cells[location - width].classList.add(fireClass) //Add new image on new row above. 
       location -= width
       // console.log('Virus Location:', cells[location].className, cells[location].innerHTML)
-      if (cells[location].className === 'virus fire' || cells[location].className === 'virusFire virus fire') { //Checks to see if atile has both the virus && fire class. 
+      if (cells[location].classList.contains(virusClass)) { //Checks to see if atile has both the virus && fire class. 
         fireVirusCollision(location)
         clearInterval(fireTime)
       } else if (location < width) { //checks to see if it reaches the top row
