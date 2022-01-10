@@ -28,7 +28,7 @@ function init(){
   const virusFireClass = 'virusFire'
   // Change values below to change virus settings
   const virusStartPosition = 16
-  const virusLinesNumber = 3
+  const virusLinesNumber = 4
   const virusEnemyAmount = 10
 
   //?? How to update the speed value?
@@ -70,7 +70,7 @@ function init(){
     })
 
     scoreNumber = 0
-    score.innerHTML =
+    score.innerHTML = 0
     lives = startLives
     livesSpan.innerText = ('💉').repeat(startLives)
   }
@@ -138,12 +138,16 @@ function init(){
         direction *= -1
         moveLineDown()
       } 
-      //End game (Win)      
+      //End game (Win/Loose)      
       if (virusCurrentPositionArray.length === 0) {
         clearInterval(movementInterval)
+        scoreNumber += 10000
+        score.innerHTML = scoreNumber
         start.disabled = false
-      } else if (virusCurrentPositionArray[0] >= width * width - width) {
+      } else if (virusCurrentPositionArray[virusCurrentPositionArray.length - 1] >= width * width - width) { //?? I need a test to check the whole last row for class of virus.
         clearInterval(movementInterval)
+        gameFinished()
+        resetGame()
         console.log('The Pit')
       } 
     }, 1000 / 2)
@@ -262,7 +266,6 @@ function init(){
             cells[location].classList.remove('smoke')
           }, 400)
         }, 1000 / fireSpeed)
-
       } 
     }, 1000 / fireSpeed)   
   }

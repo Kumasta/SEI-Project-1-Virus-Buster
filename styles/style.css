@@ -55,12 +55,21 @@ body {
 }
 
 button {
-  width: 80px;
+  width: 100px;
   background-color: rgb(255, 251, 0);
   border-color: crimson;
   box-shadow: 0 0 10px 0 red;
   border-radius: 15px;
   font-family: 'Press Start 2P', cursive;
+}
+
+#level {
+  font-family: 'Press Start 2P', cursive;
+  color: white;
+}
+
+#level-span {
+  padding-top: 5px;
 }
 
 #live-counter {
