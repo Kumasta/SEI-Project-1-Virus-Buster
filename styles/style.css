@@ -113,7 +113,7 @@ div#grid {
 }
 
 .smoke {
-  background-image: url("/Assets/SmokeGIF.gif");
+  background-image: url("/Assets/BoomGIF4.gif");
   transform: rotate(180deg);
   object-fit: none;
   background-repeat: no-repeat;

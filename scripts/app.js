@@ -32,7 +32,7 @@ function init(){
   const virusEnemyAmount = 10
 
   //?? How to update the speed value?
-  let diffuculty = 1
+  let diffuculty = 0
   // let speed = 1 - (diffuculty / 10) //??
 
   let virusCurrentPositionArray = []
@@ -44,7 +44,7 @@ function init(){
   let fireMovement = fireSpawnPostion
 
   //Set up fucntions
-  function startUpGame(event) {
+  function startUpGame() {
     addVirusStart(virusStartPosition)
     diffuculty += 1 
     console.log('Dificulty', diffuculty)
@@ -52,6 +52,23 @@ function init(){
     start.disabled = true
     addChar(charCurrentPosition)
     virusFire()
+  }
+
+  function resetGame() {
+    console.log('reset click.')
+    diffuculty = 1
+    start.disabled = false
+    removeCha(charCurrentPosition)
+    console.log[cells]
+    virusCurrentPositionArray = []
+    cells.forEach(tile => {
+      tile.className = ''
+    })
+
+    scoreNumber = 0
+    score.innerHTML =
+    lives = startLives
+    
   }
 
   //Grid generate function
@@ -120,7 +137,7 @@ function init(){
       //End game (Win)      
       if (virusCurrentPositionArray.length === 0) {
         clearInterval(movementInterval)
-        gameFinished()
+        start.disabled = false
       } else if (virusCurrentPositionArray[0] >= width * width - width) {
         clearInterval(movementInterval)
         console.log('The Pit')
@@ -238,7 +255,7 @@ function init(){
           cells[location].classList.add('smoke')
           setTimeout(() => {
             cells[location].classList.remove('smoke')
-          }, 500)
+          }, 400)
         }, 1000 / fireSpeed)
 
       } 
@@ -261,13 +278,14 @@ function init(){
   }
 
   function gameFinished() {
-    window.alert(`You won the game!\n Final score:${scoreNumber}`)
+    window.alert(`Game Over!\n Final score:${scoreNumber}`)
   }
 
   makegrid() 
 
   //Button Events
   start.addEventListener('click', startUpGame)
+  reset.addEventListener('click', resetGame)
   window.addEventListener('keyup', movementAndFire)
 
   //Function that stops spacebar scrolling the window down
