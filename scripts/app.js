@@ -69,10 +69,14 @@ function init(){
       tile.className = ''
     })
 
-    scoreNumber = 0
-    score.innerHTML = 0
+    setTimeout(() => {
+      scoreNumber = 0
+      score.innerHTML = 0
+    }, 500)
+ 
     lives = startLives
     livesSpan.innerText = ('💉').repeat(startLives)
+
   }
 
   //Grid generate function
