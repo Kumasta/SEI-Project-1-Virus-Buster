@@ -44,12 +44,16 @@ function init(){
   let fireMovement = fireSpawnPostion
 
   //Set up fucntions
+
+  reset.disabled = true
+
   function startUpGame() {
     addVirusStart(virusStartPosition)
     diffuculty += 1 
     console.log('Dificulty', diffuculty)
     VirusMovement()
     start.disabled = true
+    reset.disabled = false
     addChar(charCurrentPosition)
     virusFire()
   }
@@ -68,7 +72,7 @@ function init(){
     scoreNumber = 0
     score.innerHTML =
     lives = startLives
-    
+    livesSpan.innerText = ('💉').repeat(startLives)
   }
 
   //Grid generate function
@@ -204,7 +208,8 @@ function init(){
     livesSpan.innerText = ('💉').repeat(lives)
     if (lives <= 0) {
       setTimeout(() => {
-        window.alert('Game Over!') 
+        gameFinished() 
+        resetGame()
       }, 1000)
     }
     cells[location].innerHTML = '<img src="/Assets/BoomGIF2.gif" alt="Boom GIF">'
