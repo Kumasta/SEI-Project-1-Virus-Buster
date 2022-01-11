@@ -28,15 +28,16 @@ function init(){
   const virusClass = 'virus'
   const virusFireClass = 'virusFire'
 
-  // Change values below to change virus settings
   const virusStartPosition = 16
   let virusLinesNumber = 1
   let virusEnemyAmount = 5
+  let VirusMovementSpeedFactor = 2
 
-  //?? How to update the speed value?
+  //?? >>>>>>>>>>>>>>>>>
   let diffuculty = 0
   let enemyScaling = 0
   let enemyLineScaling = 0
+  let enemySpeedScaling = 0
   const speed = 1000
 
   let virusCurrentPositionArray = []
@@ -54,17 +55,23 @@ function init(){
     diffuculty += 1 
     direction = 1
 
+    //New level virus line length scaling
     enemyScaling = diffuculty * 0.1 + 1
     virusEnemyAmount = Math.floor(5 * enemyScaling)
     if (virusEnemyAmount > 10) {
       virusEnemyAmount = 10
     }
 
-    enemyLineScaling = diffuculty * 0.25 + 1
+    //New level virus line number scaling
+    enemyLineScaling = diffuculty * 0.36 + 1
     virusLinesNumber = Math.floor(enemyLineScaling)
     if (virusLinesNumber === 0) {
       virusLinesNumber = 1
     }
+
+    //Next level virus speed scaling
+    enemySpeedScaling = diffuculty * 0.25 + 1
+    VirusMovementSpeedFactor = enemySpeedScaling
 
     addVirusStart(virusStartPosition)
     level.innerHTML = diffuculty
@@ -175,7 +182,7 @@ function init(){
         resetGame()
         console.log('The Pit')
       } 
-    }, speed / 2)
+    }, speed / VirusMovementSpeedFactor)
   }
 
   //Virus Move down a line
