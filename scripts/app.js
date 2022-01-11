@@ -31,7 +31,7 @@ function init(){
   // Change values below to change virus settings
   const virusStartPosition = 16
   const virusLinesNumber = 2
-  let virusEnemyAmount = 5 //5 - 10
+  let virusEnemyAmount = 5
 
   //?? How to update the speed value?
   let diffuculty = 0
@@ -52,13 +52,15 @@ function init(){
   function startUpGame() {
     addVirusStart(virusStartPosition)
     diffuculty += 1 
+    direction = 1
 
     enemyScaling = diffuculty * 0.1 + 1
     virusEnemyAmount = Math.floor(5 * enemyScaling)
     if (virusEnemyAmount > 10) {
       virusEnemyAmount = 10
     }
-    console.log(virusEnemyAmount)
+
+
 
     level.innerHTML = diffuculty
     console.log('Dificulty', diffuculty)
@@ -72,6 +74,7 @@ function init(){
   function resetGame() {
     console.log('reset click.')
     diffuculty = 0
+    direction = 1
     virusEnemyAmount = 5
     level.innerHTML = diffuculty
     start.disabled = false
