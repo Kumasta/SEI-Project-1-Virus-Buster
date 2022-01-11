@@ -27,15 +27,16 @@ function init(){
   //Virus Variables
   const virusClass = 'virus'
   const virusFireClass = 'virusFire'
+
   // Change values below to change virus settings
   const virusStartPosition = 16
   const virusLinesNumber = 2
-  const virusEnemyAmount = 10
+  let virusEnemyAmount = 5 //5 - 10
 
   //?? How to update the speed value?
   let diffuculty = 0
-
-  // let speed = 1 - (diffuculty / 10) //??
+  let enemyScaling = 0
+  const speed = 1000
 
   let virusCurrentPositionArray = []
   let direction = 1 //right
@@ -46,12 +47,19 @@ function init(){
   let fireMovement = fireSpawnPostion
 
   //Set up fucntions
-
   reset.disabled = true
 
   function startUpGame() {
     addVirusStart(virusStartPosition)
     diffuculty += 1 
+
+    enemyScaling = diffuculty * 0.1 + 1
+    virusEnemyAmount = Math.floor(5 * enemyScaling)
+    if (virusEnemyAmount > 10) {
+      virusEnemyAmount = 10
+    }
+    console.log(virusEnemyAmount)
+
     level.innerHTML = diffuculty
     console.log('Dificulty', diffuculty)
     VirusMovement()
@@ -64,6 +72,7 @@ function init(){
   function resetGame() {
     console.log('reset click.')
     diffuculty = 0
+    virusEnemyAmount = 5
     level.innerHTML = diffuculty
     start.disabled = false
     removeCha(charCurrentPosition)
@@ -158,18 +167,8 @@ function init(){
         resetGame()
         console.log('The Pit')
       } 
-    }, 1000 / 2)
+    }, speed / 2)
   }
-
-  // function bottomLineCheck() {
-  //   setInterval(() => {
-  //     //Sorted array for bottom line check:
-  //     console.log('Unsorted:', virusCurrentPositionArray)
-  //     bottomOfVirusArray = virusCurrentPositionArray
-  //     bottomOfVirusArray = bottomOfVirusArray.sort((a, b) =>  a - b)
-  //     console.log('Sorted:', bottomOfVirusArray) 
-  //   }, 2000)
-  // }
 
   //Virus Move down a line
   function moveLineDown() {
@@ -194,7 +193,7 @@ function init(){
         cells[randomVirusToFire].classList.add(virusFireClass)
         virusFireMovement(randomVirusToFire)
       }
-    }, 1000 * 0.7) 
+    }, speed * 0.7) 
   }
 
   function virusFireMovement(location) {
@@ -221,7 +220,7 @@ function init(){
           }, 500)
         }, 1000 / 4)
       }
-    }, 1000 / 4)
+    }, speed / 4)
   }
 
   //Player hit events
@@ -232,12 +231,12 @@ function init(){
       setTimeout(() => {
         gameFinished() 
         resetGame()
-      }, 1000)
+      }, speed)
     }
     cells[location].innerHTML = '<img src="/Assets/BoomGIF2.gif" alt="Boom GIF">'
     setTimeout(() => {
       cells[location].innerHTML = null
-    }, 1000)
+    }, speed)
   }
   
   //Function to move character and fire 
@@ -283,9 +282,9 @@ function init(){
           setTimeout(() => {
             cells[location].classList.remove('smoke')
           }, 400)
-        }, 1000 / fireSpeed)
+        }, speed / fireSpeed)
       } 
-    }, 1000 / fireSpeed)   
+    }, speed / fireSpeed)   
   }
   
   //Fire hits a virus
