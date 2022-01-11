@@ -33,7 +33,6 @@ function init(){
   let virusEnemyAmount = 5
   let VirusMovementSpeedFactor = 2
 
-  //?? >>>>>>>>>>>>>>>>>
   let diffuculty = 0
   let enemyScaling = 0
   let enemyLineScaling = 0
@@ -67,6 +66,8 @@ function init(){
     virusLinesNumber = Math.floor(enemyLineScaling)
     if (virusLinesNumber === 0) {
       virusLinesNumber = 1
+    } else if (virusLinesNumber > 6) {
+      virusLinesNumber = 6
     }
 
     //Next level virus speed scaling
