@@ -32,11 +32,13 @@ function init(){
   let virusLinesNumber = 1
   let virusEnemyAmount = 5
   let VirusMovementSpeedFactor = 2
+  let virusFireSpeedFactor = 1
 
   let diffuculty = 0
   let enemyScaling = 0
   let enemyLineScaling = 0
   let enemySpeedScaling = 0
+  let enemyFireSpeedScaling = 0
   const speed = 1000
 
   let virusCurrentPositionArray = []
@@ -74,6 +76,15 @@ function init(){
     enemySpeedScaling = diffuculty * 0.25 + 1
     VirusMovementSpeedFactor = enemySpeedScaling
 
+    //Next Level virus fire rate
+    enemyFireSpeedScaling = 1 - (diffuculty * 0.04)
+    virusFireSpeedFactor = enemyFireSpeedScaling
+    if (virusFireSpeedFactor < 0.7) {
+      virusFireSpeedFactor = 0.7
+    }
+    console.log('VFSpeed:', virusFireSpeedFactor)
+
+
     addVirusStart(virusStartPosition)
     level.innerHTML = diffuculty
     console.log('Dificulty', diffuculty)
@@ -82,6 +93,8 @@ function init(){
     reset.disabled = false
     addChar(charCurrentPosition)
     virusFire()
+    start.innerHTML = 'Next Level'
+    start.style.fontSize = '10px'
   }
 
   function resetGame() {
@@ -89,7 +102,7 @@ function init(){
     diffuculty = 0
     direction = 1
     virusEnemyAmount = 5
-    level.innerHTML = diffuculty
+    level.innerHTML = '_'
     start.disabled = false
     removeCha(charCurrentPosition)
     console.log[cells]
@@ -105,7 +118,8 @@ function init(){
 
     lives = startLives
     livesSpan.innerText = ('💉').repeat(startLives)
-
+    start.innerHTML = 'Start'
+    start.style.fontSize = '13px'
   }
 
   //Grid generate function
@@ -209,7 +223,7 @@ function init(){
         cells[randomVirusToFire].classList.add(virusFireClass)
         virusFireMovement(randomVirusToFire)
       }
-    }, speed * 0.7) 
+    }, speed * 1) 
   }
 
   function virusFireMovement(location) {
