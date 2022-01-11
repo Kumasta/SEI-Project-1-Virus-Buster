@@ -271,10 +271,12 @@ function init(){
   
   //Function to move character and fire 
   function movementAndFire(event) {
+    console.log(event.keyCode)
     const key = event.keyCode 
     const left = 37
     const right = 39
     const fire = 32
+    const enter = 13
     removeCha(charCurrentPosition)
     if (key === right && charCurrentPosition % width !== width - 1) {
       charCurrentPosition++
@@ -283,6 +285,8 @@ function init(){
     } else if (key === fire) {
       fireShot(charCurrentPosition)
       charImageChange()
+    } else if (key === enter) {
+      start.click()
     }
     addChar(charCurrentPosition)
   }
