@@ -3,6 +3,7 @@ function init(){
   const start = document.querySelector('#start-button')
   const reset = document.querySelector('#reset-button')
   const livesSpan = document.querySelector('#live-counter')
+  const level = document.querySelector('#level-span')
   const score = document.querySelector('#score')
   let scoreNumber = 0
 
@@ -33,6 +34,7 @@ function init(){
 
   //?? How to update the speed value?
   let diffuculty = 0
+
   // let speed = 1 - (diffuculty / 10) //??
 
   let virusCurrentPositionArray = []
@@ -50,6 +52,7 @@ function init(){
   function startUpGame() {
     addVirusStart(virusStartPosition)
     diffuculty += 1 
+    level.innerHTML = diffuculty
     console.log('Dificulty', diffuculty)
     VirusMovement()
     start.disabled = true
@@ -60,7 +63,8 @@ function init(){
 
   function resetGame() {
     console.log('reset click.')
-    diffuculty = 1
+    diffuculty = 0
+    level.innerHTML = diffuculty
     start.disabled = false
     removeCha(charCurrentPosition)
     console.log[cells]
@@ -126,6 +130,7 @@ function init(){
   //Virus Movment > virus-fire
   function VirusMovement() {
     const movementInterval = setInterval(() => {
+      //Moving the virus array right and left
       virusCurrentPositionArray.forEach(position => {
         cells[position].classList.remove(virusClass)
       })
@@ -133,7 +138,6 @@ function init(){
       virusCurrentPositionArray.forEach(position => {
         cells[position].classList.add(virusClass)
       })
-
       //Line direction and line down
       if (virusCurrentPositionArray[virusCurrentPositionArray.length - 1] % width === width - 1) {
         direction *= -1
@@ -148,7 +152,7 @@ function init(){
         scoreNumber += 10000
         score.innerHTML = scoreNumber
         start.disabled = false
-      } else if (virusCurrentPositionArray[virusCurrentPositionArray.length - 1] >= width * width - width) { //?? I need a test to check the whole last row for class of virus.
+      } else if (cells[210].classList.contains(virusClass) || cells[211].classList.contains(virusClass) || cells[212].classList.contains(virusClass) || cells[213].classList.contains(virusClass) || cells[214].classList.contains(virusClass) || cells[215].classList.contains(virusClass) || cells[216].classList.contains(virusClass) || cells[217].classList.contains(virusClass) || cells[218].classList.contains(virusClass) || cells[219].classList.contains(virusClass) || cells[220].classList.contains(virusClass) || cells[221].classList.contains(virusClass) || cells[222].classList.contains(virusClass) || cells[223].classList.contains(virusClass) || cells[224].classList.contains(virusClass)) {
         clearInterval(movementInterval)
         gameFinished()
         resetGame()
@@ -156,6 +160,16 @@ function init(){
       } 
     }, 1000 / 2)
   }
+
+  // function bottomLineCheck() {
+  //   setInterval(() => {
+  //     //Sorted array for bottom line check:
+  //     console.log('Unsorted:', virusCurrentPositionArray)
+  //     bottomOfVirusArray = virusCurrentPositionArray
+  //     bottomOfVirusArray = bottomOfVirusArray.sort((a, b) =>  a - b)
+  //     console.log('Sorted:', bottomOfVirusArray) 
+  //   }, 2000)
+  // }
 
   //Virus Move down a line
   function moveLineDown() {
@@ -167,7 +181,7 @@ function init(){
       virusCurrentPositionArray.forEach(position => {
         cells[position].classList.add(virusClass)
       })  
-    }, 500)
+    }, 200)
   }
 
   //Virus fire function
@@ -196,8 +210,8 @@ function init(){
         cells[location].classList.add('character')
         clearInterval(virusFireInterval)
         removeCha(location)
-        //?? NEED a function for loosing lives. 
-      } else if (location >= width * width - width) {
+        
+      } else if (location >= width * width - width || lives === 0) {
         clearInterval(virusFireInterval)
         setTimeout(() => { //Waits one more interaval so you can see the fire on the last row.
           cells[location].classList.remove(virusFireClass)
