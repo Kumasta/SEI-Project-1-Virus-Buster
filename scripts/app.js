@@ -9,11 +9,11 @@ function init(){
   const gameStats = document.querySelector('#game-stats')
   const submit = document.querySelector('#submit')
   const score = document.querySelector('#score')
-  const currentScore = document.querySelector('#current-game-score')
+  const currentHighScore = document.querySelector('#current-game-score')
   let scoreNumber = 0
   let highScore = 0
 
-  const scoreList = window.localStorage
+  // const scoreList = window.localStorage
 
   //Audio Bank
   const sfx = {
@@ -401,11 +401,23 @@ function init(){
   function gameFinished() {
     generalChannel.src = sfx.gameOver
     generalChannel.play()
-    setTimeout(() => {
-      // window.alert(`Game Over!\n Final score:${scoreNumber}`) 
-      gameOverBox.style.display = 'block'
-      gameStats.innerHTML = `Final score:${scoreNumber}`
-    }, 200)
+    highScore = window.localStorage.getItem('highscore')
+    if (scoreNumber > highScore) {
+      window.localStorage.setItem('highscore', scoreNumber)
+      highScore = window.localStorage.getItem('highscore')
+      setTimeout(() => {
+        gameOverBox.style.display = 'block'
+        gameStats.innerHTML = 'You are the High Scorer!'
+        currentHighScore.innerHTML = highScore
+      }, 200)
+    } else {
+      setTimeout(() => {
+        gameOverBox.style.display = 'block'
+        gameStats.innerHTML = `Final score:${scoreNumber}`
+        currentHighScore.innerHTML = highScore
+      }, 200)
+    }
+
     setTimeout(() => {
       resetGame()
     }, 500)
