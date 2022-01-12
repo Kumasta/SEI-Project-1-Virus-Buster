@@ -218,6 +218,8 @@ function init(){
       //End game (Win/Loose)      
       if (virusCurrentPositionArray.length === 0) {
         clearInterval(movementInterval)
+        generalChannel.src = sfx.levelWin
+        generalChannel.play()
         scoreNumber += 10000
         score.innerHTML = scoreNumber
         start.disabled = false
