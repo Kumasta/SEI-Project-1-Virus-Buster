@@ -4,6 +4,10 @@ function init(){
   const reset = document.querySelector('#reset-button')
   const livesSpan = document.querySelector('#live-counter')
   const level = document.querySelector('#level-span')
+  const gameOverBox = document.querySelector('#game-over-container')
+  const nameInput = document.querySelector('#input')
+  const gameStats = document.querySelector('#game-stats')
+  const submit = document.querySelector('#submit')
   const score = document.querySelector('#score')
   let scoreNumber = 0
 
@@ -43,7 +47,7 @@ function init(){
   const fireSpeed = 15 // (1000 / num) How fast fire moves up the grid
 
   //Lives variables
-  const startLives = 5
+  const startLives = 1
   let lives = startLives 
   livesSpan.innerText = ('💉').repeat(startLives)
 
@@ -385,11 +389,17 @@ function init(){
     generalChannel.src = sfx.gameOver
     generalChannel.play()
     setTimeout(() => {
-      window.alert(`Game Over!\n Final score:${scoreNumber}`) 
+      // window.alert(`Game Over!\n Final score:${scoreNumber}`) 
+      gameOverBox.style.display = 'block'
+      gameStats.innerHTML = `Final score:${scoreNumber}`
     }, 500)
     setTimeout(() => {
       resetGame()
     }, 1000)
+  }
+
+  function submitScore() {
+    
   }
 
   makegrid() 
@@ -397,6 +407,7 @@ function init(){
   //Button Events
   start.addEventListener('click', startUpGame)
   reset.addEventListener('click', resetGame)
+  submit.addEventListener('click', submitScore)
   window.addEventListener('keyup', movementAndFire)
 
   //Function that stops spacebar scrolling the window down

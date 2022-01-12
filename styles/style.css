@@ -71,7 +71,6 @@ justify-content: center;
   border: 5px solid limegreen;
   box-shadow: 0 0 30px 0 rgb(60, 255, 0);
   border-radius: 25px;
-  /* margin-top: 15px; */
 }
 
 .banner-item {
@@ -145,16 +144,14 @@ div#grid {
 }
 
 #leader-board {
-  /* To undo later */
-  display: none;
+  display: block;
   background-color: rgba(0, 0, 0, 0.399);
   color: white;
   font-family: 'Press Start 2P', cursive;
   border-radius: 10px;
   position: relative;
-  top: 200px;
-  right: 390px;
-  height: 550px;
+  top: 120px;
+  height: 500px;
   width: 200px;
 }
 
@@ -207,7 +204,7 @@ img {
 
 #game-over-container {
   background-color: aquamarine;
-  height: 150px;
+  height: 200px;
   width: 400px;
   margin: 0 auto;
   position: absolute;
