@@ -43,7 +43,7 @@ function init(){
   const fireSpeed = 15 // (1000 / num) How fast fire moves up the grid
 
   //Lives variables
-  const startLives = 3
+  const startLives = 5
   let lives = startLives 
   livesSpan.innerText = ('💉').repeat(startLives)
 
@@ -254,7 +254,7 @@ function init(){
         cells[randomVirusToFire].classList.add(virusFireClass)
         virusFireMovement(randomVirusToFire)
       }
-    }, speed * 1) 
+    }, speed * virusFireSpeedFactor) 
   }
 
   function virusFireMovement(location) {
@@ -301,7 +301,6 @@ function init(){
   
   //Function to move character and fire 
   function movementAndFire(event) {
-    console.log(event.keyCode)
     const key = event.keyCode 
     const left = 37
     const right = 39
