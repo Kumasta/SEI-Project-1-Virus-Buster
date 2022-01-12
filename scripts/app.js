@@ -394,12 +394,12 @@ function init(){
       gameStats.innerHTML = `Final score:${scoreNumber}`
     }, 500)
     setTimeout(() => {
-      resetGame()
     }, 1000)
   }
 
   function submitScore() {
-    
+    resetGame()
+    gameOverBox.style.display = 'none'
   }
 
   makegrid() 

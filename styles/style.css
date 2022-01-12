@@ -149,8 +149,9 @@ div#grid {
   color: white;
   font-family: 'Press Start 2P', cursive;
   border-radius: 10px;
-  position: relative;
-  top: 120px;
+  position: absolute;
+  top: 125px;
+  left: -220px;
   height: 500px;
   width: 200px;
 }
@@ -213,7 +214,6 @@ img {
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   border-radius: 15px;
-  /* To undo later V */
   display: none;
   align-items: center;
   flex-direction: column;
