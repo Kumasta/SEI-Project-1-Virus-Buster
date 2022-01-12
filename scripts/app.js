@@ -9,6 +9,7 @@ function init(){
   const gameStats = document.querySelector('#game-stats')
   const submit = document.querySelector('#submit')
   const score = document.querySelector('#score')
+  const currentScore = document.querySelector('#current-game-score')
   let scoreNumber = 0
   let highScore = 0
 
