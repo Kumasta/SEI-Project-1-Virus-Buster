@@ -10,7 +10,9 @@ function init(){
   const submit = document.querySelector('#submit')
   const score = document.querySelector('#score')
   let scoreNumber = 0
+  let highScore = 0
 
+  const scoreList = window.localStorage
 
   //Audio Bank
   const sfx = {
@@ -19,7 +21,7 @@ function init(){
     playerHit: '/Assets/Audio-assets/04-playerHit.wav',
     virusAttack: '/Assets/Audio-assets/09-enemyFire.wav',
     virusMiss: '/Assets/Audio-assets/5 Park View 5.m4a',
-    virusHit: '/Assets/Audio-assets/10-enemyHit.wav',
+    virusHit: '/Assets/Audio-assets/08-playerMiss.mp3',
     gameStart: '/Assets/Audio-assets/062-startLevel.wav',
     gameOver: '/Assets/Audio-assets/02-gameOver.wav',
     levelWin: '/Assets/Audio-assets/07-levelWin.wav',
@@ -27,6 +29,8 @@ function init(){
 
   //Audio DOM Channels
   const generalChannel = document.querySelector('#general-channel')
+  const musicChannel = document.querySelector('#music-channel')
+  musicChannel.loop = true
   const channel1 = document.querySelector('#channel-1')
   const channel2 = document.querySelector('#channel-2')
   const channel3 = document.querySelector('#channel-3')
@@ -47,7 +51,7 @@ function init(){
   const fireSpeed = 15 // (1000 / num) How fast fire moves up the grid
 
   //Lives variables
-  const startLives = 1
+  const startLives = 3
   let lives = startLives 
   livesSpan.innerText = ('💉').repeat(startLives)
 
@@ -123,6 +127,7 @@ function init(){
     start.style.fontSize = '10px'
     generalChannel.src = sfx.gameStart
     generalChannel.play()
+    musicChannel.play()
   }
 
   function resetGame() {
@@ -152,6 +157,13 @@ function init(){
     for (let i = 0; i < cellCount; i++) {
       cells[i].classList.add('gif-default')
     }
+
+    setTimeout(() => {
+      if (gameOverBox.style.display === 'block') {
+        console.log('This box worked!')
+        start.disabled = true
+      }
+    }, 500)
   }
 
   //Grid generate function
@@ -324,7 +336,7 @@ function init(){
       charCurrentPosition--
     } else if (key === fire) {
       channel1.src = sfx.laser
-      channel1.volume = 0.20
+      channel1.volume = 0.10
       channel1.play()
       fireShot(charCurrentPosition)
       charImageChange()
@@ -392,17 +404,16 @@ function init(){
       // window.alert(`Game Over!\n Final score:${scoreNumber}`) 
       gameOverBox.style.display = 'block'
       gameStats.innerHTML = `Final score:${scoreNumber}`
-    }, 500)
+    }, 200)
     setTimeout(() => {
-    }, 1000)
+      resetGame()
+    }, 500)
   }
 
   function submitScore() {
-    resetGame()
     gameOverBox.style.display = 'none'
+    start.disabled = false
   }
-
-  makegrid() 
 
   //Button Events
   start.addEventListener('click', startUpGame)
@@ -416,6 +427,10 @@ function init(){
       e.preventDefault()
     }  
   })
+
+  makegrid() 
+  musicChannel.src = '/Assets/Audio-assets/Corona-BG-Music.mp3'
+  musicChannel.volume = 0.50
 }
 
 
