@@ -2,6 +2,7 @@ function init(){
   //DOM Elements
   const start = document.querySelector('#start-button')
   const reset = document.querySelector('#reset-button')
+  const musicButton = document.querySelector('#play-pause')
   const livesSpan = document.querySelector('#live-counter')
   const level = document.querySelector('#level-span')
   const gameOverBox = document.querySelector('#game-over-container')
@@ -128,7 +129,6 @@ function init(){
     start.style.fontSize = '10px'
     generalChannel.src = sfx.gameStart
     generalChannel.play()
-    musicChannel.play()
   }
 
   function resetGame() {
@@ -428,11 +428,22 @@ function init(){
     start.disabled = false
   }
 
+  function music() {
+    if (musicChannel.paused) {
+      musicChannel.play()
+      musicButton.innerHTML = 'Pause Music'
+    } else {
+      musicChannel.pause()
+      musicButton.innerHTML = 'Play Music'
+    }
+  }
+
   //Button Events
   start.addEventListener('click', startUpGame)
   reset.addEventListener('click', resetGame)
   submit.addEventListener('click', submitScore)
   window.addEventListener('keyup', movementAndFire)
+  musicButton.addEventListener('click', music)
 
   //Function that stops spacebar scrolling the window down
   window.addEventListener('keydown', (e) => {  

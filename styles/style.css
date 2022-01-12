@@ -234,3 +234,7 @@ p {
   margin-top: 10px;
   height: 25px;
 }
+
+#play-pause {
+width: 200px;
+}
