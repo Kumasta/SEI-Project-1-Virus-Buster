@@ -10,10 +10,18 @@
 
 
 <body>
-  <div id="main-container">
-    
+    <div id="leader-board">
+      <h4>Leaderboard</h4>
+      <div></div>
+    </div>
+
     <div id="game-container">
-      <div id ="game-title">Virus Busters</div>
+      <header id ="game-title">Virus Busters</header>
+      
+      <div id="grid-container">
+        <div id="grid"></div>
+      </div>
+
       <div id="banner-container">
         <button class="banner-item" id="start-button">Start</button>
         <button class="banner-item" id="reset-button">Reset</button>
@@ -22,12 +30,25 @@
         <div class="banner-item banner-text">Score<br><div class="varaible-text"><span id="score">0</span></div></div>
       </div>
 
-      <div id="grid-container">
-        <div id="grid"></div>
+      <div id="game-over-container">
+        <h4>Game Over!</h4>
+        <span id="game-stats">Place Holder</span>
+        <input id="input" type="text">
+        <button id="submit">Submit</button>
       </div>
 
-    </div>
 
+    </div>
+    <section id="audio-channel">
+      <audio id="general-channel"></audio>
+      <audio id="channel-1"></audio>
+      <audio id="channel-2"></audio>
+      <audio id="channel-3"></audio>
+      <audio id="channel-4"></audio>
+      <audio id="channel-5"></audio>
+      <audio id="channel-6"></audio>
+
+    </section>
 
 
 

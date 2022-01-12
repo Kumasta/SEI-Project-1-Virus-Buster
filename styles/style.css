@@ -13,26 +13,37 @@ body {
   text-align: center;
 }
 
-#game-title {
-  font-family: 'Press Start 2P', cursive;
-  font-size: 40px; 
-  margin: 0 auto;
-  margin-bottom: 10px;
-  margin-top: 25px;
-  background-color: rgba(0, 0, 0, 0.303);
-  width: 590px;
-  border-radius: 20px;
-  color: rgb(255, 0, 0);
-  text-decoration: underline;
+#main-container {
+display: flex;
+flex-direction: row;
+align-items: stretch;
+justify-content: center;
+
 }
 
 #game-container {
-  width: 700px;
+  width: 550px;
   position: absolute;
   left: 50%;
   top: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+
+}
+
+#game-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 35px; 
+  margin: 0 auto;
+  margin-bottom: 25px;
+  margin-top: 25px;
+  background-color: rgba(0, 0, 0, 0.625);
+  border: 5px solid limegreen;
+  box-shadow: 0 0 30px 0 rgb(60, 255, 0);
+  width: 550px;
+  border-radius: 20px;
+  color: rgb(255, 0, 0);
+  height: 50px;
 }
 
 #grid-container {
@@ -60,7 +71,7 @@ body {
   border: 5px solid limegreen;
   box-shadow: 0 0 30px 0 rgb(60, 255, 0);
   border-radius: 25px;
-  margin-bottom: 25px;
+  /* margin-top: 15px; */
 }
 
 .banner-item {
@@ -119,14 +130,13 @@ div#grid {
   align-items: center;
   justify-content: center;
   height: 100%;
-  height: 650px;
-  width: 650px;
+  height: 500px;
+  width: 500px;
   margin-top: 25px;
   margin-bottom: 25px;
   box-shadow: 0 0 60px 0 rgb(0, 17, 255);
   border-radius: 10px;
 }
-
 
 #grid div {
   flex-grow: 1;
@@ -134,71 +144,81 @@ div#grid {
   width: 6.5%;
 }
 
-.smoke {
-  background-image: url("/Assets/BoomGIF4v2.gif");
-  transform: rotate(180deg);
+#leader-board {
+  /* To undo later */
+  display: none;
+  background-color: rgba(0, 0, 0, 0.399);
+  color: white;
+  font-family: 'Press Start 2P', cursive;
+  border-radius: 10px;
+  position: relative;
+  top: 200px;
+  right: 390px;
+  height: 550px;
+  width: 200px;
+}
+
+h4 {
+  text-decoration: underline;
+}
+
+.gif-default {
   object-fit: none;
   background-repeat: no-repeat;
   background-size: contain ;
   background-position: center;
   cursor: crosshair;
+}
+
+.smoke {
+  background-image: url("/Assets/BoomGIF4v2.gif");
+  transform: rotate(180deg);
 }
 
 .smoke-reverse {
   background-image: url("/Assets/SmokeGIF.gif");
-  object-fit: none;
-  background-repeat: no-repeat;
-  background-size: contain ;
-  background-position: center;
-  cursor: crosshair;
 }
 
 .character {
-  background-image: url("/Assets/Red-Needle2.gif");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  cursor: crosshair;
+  background-image: url("/Assets/Red-Needle2v2.gif");
 }
 
 .emptyCharacter {
-  background-image: url("/Assets/Red-Needle2Empty.gif");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  cursor: crosshair;
+  background-image: url("/Assets/Red-Needle2Emptyv2.gif");
 }
 
 .fire {
   background-image: url("/Assets/noemi-coute-laser2.gif");
-  background-repeat: no-repeat;
-  background-size: contain ;
-  background-position: center;
-  cursor: crosshair;
 }
 
 .virusFire {
   background-image: url("/Assets/red-covid-gif.gif");
-  object-fit: none;
-  background-repeat: no-repeat;
-  background-size: 1em ;
-  background-position: center;
-  cursor: crosshair;
 }
 
 .virus {
   background-image: url("/Assets/Covid V4.gif");
-  object-fit: none;
-  background-repeat: no-repeat;
-  background-size: contain ;
-  background-position: center;
-  cursor: crosshair;
 }
-
-
 
 img {
   height: 100%;
   width: 100%;
   z-index: 1;
+}
+
+#game-over-container {
+  background-color: aquamarine;
+  height: 150px;
+  width: 400px;
+  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border-radius: 15px;
+  /* To undo later V */
+  display: none;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
 }

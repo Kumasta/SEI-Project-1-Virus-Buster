@@ -7,6 +7,29 @@ function init(){
   const score = document.querySelector('#score')
   let scoreNumber = 0
 
+
+  //Audio Bank
+  const sfx = {
+    laser: '/Assets/Audio-assets/01-lazer.mp3',
+    playerMiss: '/Assets/Audio-assets/08-playerMiss.mp3',
+    playerHit: '/Assets/Audio-assets/04-playerHit.wav',
+    virusAttack: '/Assets/Audio-assets/09-enemyFire.wav',
+    virusMiss: '/Assets/Audio-assets/5 Park View 5.m4a',
+    virusHit: '/Assets/Audio-assets/032-enemyDown.wav',
+    gameStart: '/Assets/Audio-assets/062-startLevel.wav',
+    gameOver: '/Assets/Audio-assets/02-gameOver.wav',
+    levelWin: '/Assets/Audio-assets/07-levelWin.wav',
+  }
+
+  //Audio DOM Channels
+  const generalChannel = document.querySelector('#general-channel')
+  const channel1 = document.querySelector('#channel-1')
+  const channel2 = document.querySelector('#channel-2')
+  const channel3 = document.querySelector('#channel-3')
+  const channel4 = document.querySelector('#channel-4')
+  const channel5 = document.querySelector('#channel-5')
+  const channel6 = document.querySelector('#channel-6')
+
   //Grid variables
   const grid = document.querySelector('#grid')
   const width = 15
@@ -95,6 +118,8 @@ function init(){
     virusFire()
     start.innerHTML = 'Next Level'
     start.style.fontSize = '10px'
+    generalChannel.src = sfx.gameStart
+    generalChannel.play()
   }
 
   function resetGame() {
@@ -120,6 +145,10 @@ function init(){
     livesSpan.innerText = ('💉').repeat(startLives)
     start.innerHTML = 'Start'
     start.style.fontSize = '13px'
+
+    for (let i = 0; i < cellCount; i++) {
+      cells[i].classList.add('gif-default')
+    }
   }
 
   //Grid generate function
@@ -127,6 +156,7 @@ function init(){
     for (let i = 0; i < cellCount; i++) {
       const gridCell = document.createElement('div')
       gridCell.innerHTML = i
+      gridCell.classList.add('gif-default')
       grid.appendChild(gridCell)
       cells.push(gridCell)
     }
@@ -194,7 +224,6 @@ function init(){
       } else if (cells[210].classList.contains(virusClass) || cells[211].classList.contains(virusClass) || cells[212].classList.contains(virusClass) || cells[213].classList.contains(virusClass) || cells[214].classList.contains(virusClass) || cells[215].classList.contains(virusClass) || cells[216].classList.contains(virusClass) || cells[217].classList.contains(virusClass) || cells[218].classList.contains(virusClass) || cells[219].classList.contains(virusClass) || cells[220].classList.contains(virusClass) || cells[221].classList.contains(virusClass) || cells[222].classList.contains(virusClass) || cells[223].classList.contains(virusClass) || cells[224].classList.contains(virusClass)) {
         clearInterval(movementInterval)
         gameFinished()
-        resetGame()
         console.log('The Pit')
       } 
     }, speed / VirusMovementSpeedFactor)
@@ -260,7 +289,6 @@ function init(){
     if (lives <= 0) {
       setTimeout(() => {
         gameFinished() 
-        resetGame()
       }, speed)
     }
     cells[location].innerHTML = '<img src="/Assets/BoomGIF2.gif" alt="Boom GIF">'
@@ -337,7 +365,14 @@ function init(){
   }
 
   function gameFinished() {
-    window.alert(`Game Over!\n Final score:${scoreNumber}`)
+    generalChannel.src = sfx.gameOver
+    generalChannel.play()
+    setTimeout(() => {
+      window.alert(`Game Over!\n Final score:${scoreNumber}`) 
+    }, 500)
+    setTimeout(() => {
+      resetGame()
+    }, 1000)
   }
 
   makegrid() 
