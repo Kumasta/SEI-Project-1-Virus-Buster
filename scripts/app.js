@@ -15,7 +15,7 @@ function init(){
     playerHit: '/Assets/Audio-assets/04-playerHit.wav',
     virusAttack: '/Assets/Audio-assets/09-enemyFire.wav',
     virusMiss: '/Assets/Audio-assets/5 Park View 5.m4a',
-    virusHit: '/Assets/Audio-assets/032-enemyDown.wav',
+    virusHit: '/Assets/Audio-assets/10-enemyHit.wav',
     gameStart: '/Assets/Audio-assets/062-startLevel.wav',
     gameOver: '/Assets/Audio-assets/02-gameOver.wav',
     levelWin: '/Assets/Audio-assets/07-levelWin.wav',
@@ -50,22 +50,21 @@ function init(){
   //Virus Variables
   const virusClass = 'virus'
   const virusFireClass = 'virusFire'
-
   const virusStartPosition = 16
   let virusLinesNumber = 1
   let virusEnemyAmount = 5
   let VirusMovementSpeedFactor = 2
   let virusFireSpeedFactor = 1
+  let virusCurrentPositionArray = []
+  let direction = 1 //right
 
+  //Difficulty & scaling varaibles
   let diffuculty = 0
   let enemyScaling = 0
   let enemyLineScaling = 0
   let enemySpeedScaling = 0
   let enemyFireSpeedScaling = 0
   const speed = 1000
-
-  let virusCurrentPositionArray = []
-  let direction = 1 //right
 
   //Fire shot Varaibles
   const fireClass = 'fire'
@@ -246,12 +245,15 @@ function init(){
 
   //Virus fire function
   function virusFire() {
-    const virusFireInvterval = setInterval(() => { // Runs as the page loads as of now. Will run when start button is pushed
+    const virusFireInvterval = setInterval(() => { //Runs when start button is activated
       if (virusCurrentPositionArray[0] >= width * width - width || virusCurrentPositionArray.length === 0) {
         clearInterval(virusFireInvterval)
       } else if (virusCurrentPositionArray.length > 0) { //Checks to see if a virus is still on the grid
         const randomVirusToFire = virusCurrentPositionArray[Math.floor(Math.random() * virusCurrentPositionArray.length)]  //Pull a postion number from the virus array
         cells[randomVirusToFire].classList.add(virusFireClass)
+        channel4.src = sfx.virusAttack
+        channel4.volume = 0.20
+        channel4.play()
         virusFireMovement(randomVirusToFire)
       }
     }, speed * virusFireSpeedFactor) 
@@ -275,6 +277,9 @@ function init(){
         clearInterval(virusFireInterval)
         setTimeout(() => { //Waits one more interaval so you can see the fire on the last row.
           cells[location].classList.remove(virusFireClass)
+          channel5.src = sfx.virusMiss
+          channel5.volume = 0.20
+          channel5.play()
           cells[location].classList.add('smoke-reverse')
           setTimeout(() => {
             cells[location].classList.remove('smoke-reverse')
@@ -288,6 +293,8 @@ function init(){
   function chaHit(location) {
     lives -= 1
     livesSpan.innerText = ('💉').repeat(lives)
+    channel3.src = sfx.playerHit
+    channel3.play()
     if (lives <= 0) {
       setTimeout(() => {
         gameFinished() 
@@ -312,6 +319,9 @@ function init(){
     } else if (key === left && charCurrentPosition % width !== 0) {
       charCurrentPosition--
     } else if (key === fire) {
+      channel1.src = sfx.laser
+      channel1.volume = 0.20
+      channel1.play()
       fireShot(charCurrentPosition)
       charImageChange()
     } else if (key === enter) {
@@ -335,12 +345,18 @@ function init(){
       location -= width
       // console.log('Virus Location:', cells[location].className, cells[location].innerHTML)
       if (cells[location].classList.contains(virusClass)) { //Checks to see if atile has both the virus && fire class. 
+        channel6.src = sfx.virusHit
+        channel6.volume = 0.60
+        channel6.play()
         fireVirusCollision(location)
         clearInterval(fireTime)
       } else if (location < width) { //checks to see if it reaches the top row
         clearInterval(fireTime) //stops the Time Interval
         setTimeout(() => { //Waits one more interaval so you can see the fire on the last row.
           cells[location].classList.remove(fireClass)
+          channel2.src = sfx.playerMiss
+          channel2.volume = 0.20
+          channel2.play()
           cells[location].classList.add('smoke')
           setTimeout(() => {
             cells[location].classList.remove('smoke')
