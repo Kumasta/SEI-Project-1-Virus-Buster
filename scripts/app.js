@@ -11,10 +11,10 @@ function init(){
   const submit = document.querySelector('#submit')
   const score = document.querySelector('#score')
   const currentHighScore = document.querySelector('#current-game-score')
+  let finishedGameScore = 0
   let scoreNumber = 0
   let highScore = 0
-
-  // const scoreList = window.localStorage
+  
 
   //Audio Bank
   const sfx = {
@@ -161,7 +161,6 @@ function init(){
 
     setTimeout(() => {
       if (gameOverBox.style.display === 'block') {
-        console.log('This box worked!')
         start.disabled = true
       }
     }, 500)
@@ -399,6 +398,7 @@ function init(){
   }
 
   function gameFinished() {
+    finishedGameScore = scoreNumber
     generalChannel.src = sfx.gameOver
     generalChannel.play()
     highScore = window.localStorage.getItem('highscore')
@@ -423,10 +423,37 @@ function init(){
     }, 500)
   }
 
+  const leaderboard = localStorage.getItem('sei_leaderboard_virus_buster') ? [localStorage.getItem('sei_leaderboard_virus_buster')] : []
+  console.log(leaderboard)
+
   function submitScore() {
     gameOverBox.style.display = 'none'
     start.disabled = false
+    // leaderboard = [leaderboard]
+    const sessionName = nameInput.value
+    localStorage.setItem('sei_temp_virus_buster', JSON.stringify({ name: sessionName, score: finishedGameScore }))
+    leaderboard.push(localStorage.getItem('sei_temp_virus_buster'))
+    console.log('Leaderboard', leaderboard)
+    localStorage.setItem('sei_leaderboard_virus_buster', leaderboard)
   }
+  
+
+
+  // localStorage.setItem('test', JSON.stringify([{ Name: 'Mayur', Score: 10000 }]))
+  // const currentSession = localStorage.getItem('test')
+  // console.log('The current game data:', currentSession)
+
+  // leaderboard.push(JSON.stringify([{ Name: 'Jim', Score: 20000 }]))
+  // leaderboard.push(currentSession)
+  // console.log(leaderboard)
+
+  // console.log(localStorage.getItem('test'))
+  // const leaderboard = JSON.parse(localStorage.getItem())
+  // localStorage.getItem('sei_high_score') ? localStorage.getItem('sei_high_score') : 0
+
+  // const scoreList = window.localStorage
+
+
 
   function music() {
     if (musicChannel.paused) {

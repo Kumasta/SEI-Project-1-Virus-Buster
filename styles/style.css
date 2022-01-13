@@ -35,7 +35,7 @@ justify-content: center;
   font-family: 'Press Start 2P', cursive;
   font-size: 35px; 
   margin: 0 auto;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   margin-top: 25px;
   background-color: rgba(0, 0, 0, 0.625);
   border: 5px solid limegreen;
@@ -71,6 +71,7 @@ justify-content: center;
   border: 5px solid limegreen;
   box-shadow: 0 0 30px 0 rgb(60, 255, 0);
   border-radius: 25px;
+  margin-top: 10px;
 }
 
 .banner-item {
