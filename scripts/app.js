@@ -1,4 +1,4 @@
-function init(){
+function init() {
   //DOM Elements
   const start = document.querySelector('#start-button')
   const reset = document.querySelector('#reset-button')
@@ -11,11 +11,12 @@ function init(){
   const gameStats = document.querySelector('#game-stats')
   const submit = document.querySelector('#submit')
   const score = document.querySelector('#score')
+  const leaderList = document.querySelector('#leader-list')
   const currentHighScore = document.querySelector('#current-game-score')
   let finishedGameScore = 0
   let scoreNumber = 0
   let highScore = 0
-  
+
 
   //Audio Bank
   const sfx = {
@@ -46,7 +47,7 @@ function init(){
   const width = 15
   const cellCount = width * width
   const cells = []
-  
+
   //Player Char Varaibles
   const charClass = 'character'
   const startPosition = 217 //Must be on the bottom line (210 - 224)
@@ -54,8 +55,8 @@ function init(){
   const fireSpeed = 15 // (1000 / num) How fast fire moves up the grid
 
   //Lives variables
-  const startLives = 3
-  let lives = startLives 
+  const startLives = 1
+  let lives = startLives
   livesSpan.innerText = ('💉').repeat(startLives)
 
   //Virus Variables
@@ -86,7 +87,7 @@ function init(){
   reset.disabled = true
 
   function startUpGame() {
-    diffuculty += 1 
+    diffuculty += 1
     direction = 1
 
     //New level virus line length scaling
@@ -180,7 +181,7 @@ function init(){
   }
 
   //Add & Remove character functions
-  function addChar(position){
+  function addChar(position) {
     cells[position].classList.add(charClass)
   }
   function removeCha(position) {
@@ -192,7 +193,7 @@ function init(){
   function addVirusStart(position) {
     for (let i = 0; i < virusEnemyAmount; i++) {
       for (let y = 0; y < virusLinesNumber; y++) {
-        cells[position + width * y + i].classList.add(virusClass) 
+        cells[position + width * y + i].classList.add(virusClass)
         virusCurrentPositionArray.push(position + width * y + i)
       }
     }
@@ -204,7 +205,7 @@ function init(){
     cells[position].classList.remove(virusClass)
     const collided = virusCurrentPositionArray.indexOf(position)
     virusCurrentPositionArray.splice(collided, 1)
-  
+
     scoreNumber += 1000
     score.innerHTML = scoreNumber
     cells[position].innerHTML = '<img src="/Assets/BoomGIF3.gif" alt="Boom GIF">'
@@ -231,7 +232,7 @@ function init(){
       } else if (virusCurrentPositionArray[0] % width === 0) {
         direction *= -1
         moveLineDown()
-      } 
+      }
       //End game (Win/Loose)      
       if (virusCurrentPositionArray.length === 0) {
         clearInterval(movementInterval)
@@ -244,7 +245,7 @@ function init(){
         clearInterval(movementInterval)
         gameFinished()
         console.log('The Pit')
-      } 
+      }
     }, speed / VirusMovementSpeedFactor)
   }
 
@@ -257,7 +258,7 @@ function init(){
       virusCurrentPositionArray = virusCurrentPositionArray.map(position => position + width)
       virusCurrentPositionArray.forEach(position => {
         cells[position].classList.add(virusClass)
-      })  
+      })
     }, 200)
   }
 
@@ -274,7 +275,7 @@ function init(){
         channel4.play()
         virusFireMovement(randomVirusToFire)
       }
-    }, speed * virusFireSpeedFactor) 
+    }, speed * virusFireSpeedFactor)
   }
 
   function virusFireMovement(location) {
@@ -290,7 +291,7 @@ function init(){
         cells[location].classList.add('character')
         clearInterval(virusFireInterval)
         removeCha(location)
-        
+
       } else if (location >= width * width - width || lives === 0) {
         clearInterval(virusFireInterval)
         setTimeout(() => { //Waits one more interaval so you can see the fire on the last row.
@@ -315,7 +316,7 @@ function init(){
     channel3.play()
     if (lives <= 0) {
       setTimeout(() => {
-        gameFinished() 
+        gameFinished()
       }, speed)
     }
     cells[location].innerHTML = '<img src="/Assets/BoomGIF2.gif" alt="Boom GIF">'
@@ -323,10 +324,10 @@ function init(){
       cells[location].innerHTML = null
     }, speed)
   }
-  
+
   //Function to move character and fire 
   function movementAndFire(event) {
-    const key = event.keyCode 
+    const key = event.keyCode
     const left = 37
     const right = 39
     const fire = 32
@@ -349,7 +350,7 @@ function init(){
   }
 
   //Function to spawn fire
-  function fireShot(spawn){
+  function fireShot(spawn) {
     cells[spawn - width].classList.add(fireClass)
     fireMovement = cells[spawn - width].innerHTML
     fireMove(fireMovement)
@@ -380,15 +381,15 @@ function init(){
             cells[location].classList.remove('smoke')
           }, 400)
         }, speed / fireSpeed)
-      } 
-    }, speed / fireSpeed)   
+      }
+    }, speed / fireSpeed)
   }
-  
+
   //Fire hits a virus
   function fireVirusCollision(location) {
     removeVirus(location)
     cells[location].classList.remove(fireClass)
-  } 
+  }
 
   //Character animation for fire
   function charImageChange() {
@@ -419,46 +420,62 @@ function init(){
         currentHighScore.innerHTML = highScore
       }, 200)
     }
-
+    
     setTimeout(() => {
       resetGame()
-    }, 500)
+    }, 400)
   }
 
-  const leaderboard = localStorage.getItem('sei_leaderboard_virus_buster') ? localStorage.getItem('sei_leaderboard_virus_buster') : []
+  let leaderboard = localStorage.getItem('sei_leaderboard_virus_buster') ? localStorage.getItem('sei_leaderboard_virus_buster') : '[]'
+  let leaderboardParsed = JSON.parse(leaderboard)
 
   function submitScore() {
     controlBox.style.display = 'block'
     gameOverBox.style.display = 'none'
     start.disabled = false
-    const sessionName = nameInput.value
-    localStorage.setItem('sei_temp_virus_buster', JSON.stringify({ name: sessionName, score: finishedGameScore }))
-    leaderboard.push(localStorage.getItem('sei_temp_virus_buster'))
-    console.log('Leaderboard', leaderboard)
-    localStorage.setItem('sei_leaderboard_virus_buster', leaderboard)
+    const sessionName = nameInput.value ? nameInput.value : 'Player'
+    console.log(sessionName)
+    const temp = { name: sessionName, score: finishedGameScore }
+    leaderboardParsed.push(temp)
+    // console.log(leaderboardParsed)
+    const leaderJSONString = JSON.stringify(leaderboardParsed)
+    localStorage.setItem('sei_leaderboard_virus_buster', leaderJSONString)
+    leaderboard = localStorage.getItem('sei_leaderboard_virus_buster')
+    leaderboardParsed = 0
+    leaderboardParsed = JSON.parse(leaderboard)
+    console.log('Leader Parsed after submit:', leaderboardParsed)
+    clearleaderboard()
   }
 
-  // console.log(leaderboard)
-  // leaderboard.forEach(item => {
-  //   console.log(JSON.parse(item))
-  // })
+  function clearleaderboard() {
+    while (leaderList.lastElementChild) {
+      leaderList.removeChild(leaderList.lastChild)
+    }
+    sortLeaderList()
+  }
 
+  function sortLeaderList() {
+    const leaderboardNameScoreList = []
+    leaderboardParsed.forEach(item => {
+      const objValues = Object.values(item)
+      leaderboardNameScoreList.push(item)
+    })
 
-  // localStorage.setItem('test', JSON.stringify([{ Name: 'Mayur', Score: 10000 }]))
-  // const currentSession = localStorage.getItem('test')
-  // console.log('The current game data:', currentSession)
+    leaderboardNameScoreList.sort((a, b) => {
+      return b.score - a.score
+    })
 
-  // leaderboard.push(JSON.stringify([{ Name: 'Jim', Score: 20000 }]))
-  // leaderboard.push(currentSession)
-  // console.log(leaderboard)
-
-  // console.log(localStorage.getItem('test'))
-  // const leaderboard = JSON.parse(localStorage.getItem())
-  // localStorage.getItem('sei_high_score') ? localStorage.getItem('sei_high_score') : 0
-
-  // const scoreList = window.localStorage
-
-
+    leaderboardNameScoreList.forEach(element => {
+      const newListItem = document.createElement('tr')
+      const nameTD = document.createElement('td')
+      const scoreTD = document.createElement('td')
+      nameTD.innerHTML = element.name
+      scoreTD.innerHTML = element.score
+      newListItem.appendChild(nameTD)
+      newListItem.appendChild(scoreTD)
+      leaderList.appendChild(newListItem)
+    })
+  }
 
   function music() {
     if (musicChannel.paused) {
@@ -478,13 +495,14 @@ function init(){
   musicButton.addEventListener('click', music)
 
   //Function that stops spacebar scrolling the window down
-  window.addEventListener('keydown', (e) => {  
-    if (e.keyCode === 32 && e.target === document.body) {  
+  window.addEventListener('keydown', (e) => {
+    if (e.keyCode === 32 && e.target === document.body) {
       e.preventDefault()
-    }  
+    }
   })
 
-  makegrid() 
+  makegrid()
+  sortLeaderList()
   musicChannel.src = '/Assets/Audio-assets/Corona-BG-Music.mp3'
   musicChannel.volume = 0.50
 }

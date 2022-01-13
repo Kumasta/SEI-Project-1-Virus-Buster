@@ -168,7 +168,7 @@ div#grid {
 }
 
 #leader-board {
-  display: none;
+  /* display: none; */
   background-color: rgba(0, 0, 0, 0.399);
   color: white;
   font-family: 'Press Start 2P', cursive;
@@ -178,6 +178,7 @@ div#grid {
   left: -220px;
   height: 500px;
   width: 200px;
+  overflow-y: scroll
 }
 
 h4 {
@@ -275,4 +276,14 @@ p {
 #play-pause {
   margin-top: 5px;
   width: 200px;
+}
+
+table {
+  padding-left: 18px;
+}
+
+td {
+  font-size: 12px;
+  text-align: justify;
+  padding-right: 15px;
 }
