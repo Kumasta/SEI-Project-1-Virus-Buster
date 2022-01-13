@@ -18,13 +18,20 @@
         <div></div>
       </div>
 
+      <div class="controls-box" id="controls-box">
+        <h4>Controls</h4>
+        <p>&#8592; Move Left & Move Right &#8594;</p>
+        <p>&#9645; Spacebar: Fire Weapon</p>
+        <p>&#8626; Enter: Next level</p>
+      </div>
+
       <header id ="game-title">Virus Busters</header>
       
       <div id="grid-container">
         <div id="grid"></div>
       </div>
 
-      <div id="banner-container">
+      <div class="pulse" id="banner-container">
         <button class="banner-item" id="start-button">Start</button>
         <button class="banner-item" id="reset-button">Reset</button>
         <div id=level>Level<span id="level-span">_</span></div>
@@ -32,13 +39,13 @@
         <div class="banner-item banner-text">Score<br><div class="varaible-text"><span id="score">0</span></div></div>
       </div>
 
-      <div id="game-over-container">
+      <div class="pulse" id="game-over-container">
         <h4>Game Over!</h4>
         <span id="game-stats">Place Holder</span>
         <p>Current Highscore:<br><span id="current-game-score">0000</span></p>
-        <input id="input" type="text" placeholder="Name">
-        <br>
-        <button id="submit">Submit</button>
+        <!-- <input id="input" type="text" placeholder="Name"> -->
+        <!-- <br> -->
+        <button id="submit">Close</button>
       </div>
 
       <button id="play-pause">Music Play</button>

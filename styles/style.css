@@ -31,6 +31,10 @@ justify-content: center;
 
 }
 
+header {
+  padding-top: 5px;
+}
+
 #game-title {
   font-family: 'Press Start 2P', cursive;
   font-size: 35px; 
@@ -44,6 +48,7 @@ justify-content: center;
   border-radius: 20px;
   color: rgb(255, 0, 0);
   height: 50px;
+  animation: pulse 5s infinite;
 }
 
 #grid-container {
@@ -72,6 +77,24 @@ justify-content: center;
   box-shadow: 0 0 30px 0 rgb(60, 255, 0);
   border-radius: 25px;
   margin-top: 10px;
+  animation: pulse 5s infinite;
+}
+
+@keyframes pulse {
+	0% {
+		box-shadow: 0 0 30px 0 rgb(60, 255, 0);
+    border: 5px solid limegreen;
+	}
+
+	50% {
+		box-shadow: 0 0 30px 0 rgb(0, 238, 255);
+    border: 5px solid rgb(0, 238, 255);
+	}
+
+	100% {
+		box-shadow: 0 0 30px 0 rgb(60, 255, 0);
+    border: 5px solid limegreen;
+	}
 }
 
 .banner-item {
@@ -160,6 +183,19 @@ div#grid {
 h4 {
   text-decoration: underline;
   font-family: 'Press Start 2P', cursive;
+  color: white;
+}
+
+.controls-box {
+  position: absolute;
+  color: white;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.399);
+  border-radius: 10px;
+  padding: 5px;
 }
 
 .gif-default {
@@ -237,5 +273,6 @@ p {
 }
 
 #play-pause {
-width: 200px;
+  margin-top: 5px;
+  width: 200px;
 }

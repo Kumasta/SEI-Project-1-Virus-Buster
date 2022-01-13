@@ -6,6 +6,7 @@ function init(){
   const livesSpan = document.querySelector('#live-counter')
   const level = document.querySelector('#level-span')
   const gameOverBox = document.querySelector('#game-over-container')
+  const controlBox = document.querySelector('#controls-box')
   const nameInput = document.querySelector('#input')
   const gameStats = document.querySelector('#game-stats')
   const submit = document.querySelector('#submit')
@@ -23,7 +24,7 @@ function init(){
     playerHit: '/Assets/Audio-assets/04-playerHit.wav',
     virusAttack: '/Assets/Audio-assets/09-enemyFire.wav',
     virusMiss: '/Assets/Audio-assets/5 Park View 5.m4a',
-    virusHit: '/Assets/Audio-assets/08-playerMiss.mp3',
+    virusHit: '/Assets/Audio-assets/10-enemyHit.wav',
     gameStart: '/Assets/Audio-assets/062-startLevel.wav',
     gameOver: '/Assets/Audio-assets/02-gameOver.wav',
     levelWin: '/Assets/Audio-assets/07-levelWin.wav',
@@ -129,6 +130,7 @@ function init(){
     start.style.fontSize = '10px'
     generalChannel.src = sfx.gameStart
     generalChannel.play()
+    controlBox.style.display = 'none'
   }
 
   function resetGame() {
@@ -423,20 +425,23 @@ function init(){
     }, 500)
   }
 
-  const leaderboard = localStorage.getItem('sei_leaderboard_virus_buster') ? [localStorage.getItem('sei_leaderboard_virus_buster')] : []
-  console.log(leaderboard)
+  const leaderboard = localStorage.getItem('sei_leaderboard_virus_buster') ? localStorage.getItem('sei_leaderboard_virus_buster') : []
 
   function submitScore() {
+    controlBox.style.display = 'block'
     gameOverBox.style.display = 'none'
     start.disabled = false
-    // leaderboard = [leaderboard]
     const sessionName = nameInput.value
     localStorage.setItem('sei_temp_virus_buster', JSON.stringify({ name: sessionName, score: finishedGameScore }))
     leaderboard.push(localStorage.getItem('sei_temp_virus_buster'))
     console.log('Leaderboard', leaderboard)
     localStorage.setItem('sei_leaderboard_virus_buster', leaderboard)
   }
-  
+
+  // console.log(leaderboard)
+  // leaderboard.forEach(item => {
+  //   console.log(JSON.parse(item))
+  // })
 
 
   // localStorage.setItem('test', JSON.stringify([{ Name: 'Mayur', Score: 10000 }]))
