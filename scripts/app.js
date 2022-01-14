@@ -207,7 +207,7 @@ function init() {
 
     scoreNumber += 1000
     score.innerHTML = scoreNumber
-    cells[position].innerHTML = '<img src="/assets/Splat2.gif" alt="Boom GIF">'
+    cells[position].innerHTML = '<img src="assets/Splat2.gif" alt="Boom GIF">'
     setTimeout(() => {
       cells[position].innerHTML = null
     }, 500)
