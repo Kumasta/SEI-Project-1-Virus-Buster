@@ -268,7 +268,8 @@ p {
   margin-bottom: 0;
 }
 
-#submit {
+#submit, 
+#close {
   margin-top: 10px;
   height: 25px;
 }

@@ -10,13 +10,13 @@ function init() {
   const nameInput = document.querySelector('#input')
   const gameStats = document.querySelector('#game-stats')
   const submit = document.querySelector('#submit')
+  const close = document.querySelector('#close')
   const score = document.querySelector('#score')
   const leaderList = document.querySelector('#leader-list')
   const currentHighScore = document.querySelector('#current-game-score')
   let finishedGameScore = 0
   let scoreNumber = 0
   let highScore = 0
-
 
   //Audio Bank
   const sfx = {
@@ -55,7 +55,7 @@ function init() {
   const fireSpeed = 15 // (1000 / num) How fast fire moves up the grid
 
   //Lives variables
-  const startLives = 1
+  const startLives = 3
   let lives = startLives
   livesSpan.innerText = ('💉').repeat(startLives)
 
@@ -118,7 +118,6 @@ function init() {
     }
     console.log('VFSpeed:', virusFireSpeedFactor)
 
-
     addVirusStart(virusStartPosition)
     level.innerHTML = diffuculty
     console.log('Dificulty', diffuculty)
@@ -135,6 +134,7 @@ function init() {
   }
 
   function resetGame() {
+    close.disabled = false
     console.log('reset click.')
     diffuculty = 0
     direction = 1
@@ -401,33 +401,48 @@ function init() {
   }
 
   function gameFinished() {
+    setTimeout(() => {
+      generalChannel.src = sfx.gameOver
+      generalChannel.play()
+    }, 900)
     finishedGameScore = scoreNumber
-    generalChannel.src = sfx.gameOver
-    generalChannel.play()
     highScore = window.localStorage.getItem('highscore')
-    if (scoreNumber > highScore) {
+    gameOverBox.style.display = 'block'
+    if (!finishedGameScore) {
+      submit.disabled = true
+      gameStats.innerHTML = 'Better luck next round~'
+      currentHighScore.innerHTML = highScore
+    } else if (scoreNumber > highScore) {
+      close.disabled = true
       window.localStorage.setItem('highscore', scoreNumber)
       highScore = window.localStorage.getItem('highscore')
       setTimeout(() => {
-        gameOverBox.style.display = 'block'
+
         gameStats.innerHTML = 'You are the High Scorer!'
         currentHighScore.innerHTML = highScore
       }, 200)
     } else {
       setTimeout(() => {
-        gameOverBox.style.display = 'block'
+
         gameStats.innerHTML = `Final score:${scoreNumber}`
         currentHighScore.innerHTML = highScore
       }, 200)
     }
-    
+
     setTimeout(() => {
       resetGame()
     }, 400)
   }
 
+  function closeGameOverBox() {
+    submit.disabled = false
+    gameOverBox.style.display = 'none'
+    resetGame()
+  }
+
   let leaderboard = localStorage.getItem('sei_leaderboard_virus_buster') ? localStorage.getItem('sei_leaderboard_virus_buster') : '[]'
   let leaderboardParsed = JSON.parse(leaderboard)
+  console.log(leaderboardParsed)
 
   function submitScore() {
     controlBox.style.display = 'block'
@@ -437,11 +452,9 @@ function init() {
     console.log(sessionName)
     const temp = { name: sessionName, score: finishedGameScore }
     leaderboardParsed.push(temp)
-    // console.log(leaderboardParsed)
     const leaderJSONString = JSON.stringify(leaderboardParsed)
     localStorage.setItem('sei_leaderboard_virus_buster', leaderJSONString)
     leaderboard = localStorage.getItem('sei_leaderboard_virus_buster')
-    leaderboardParsed = 0
     leaderboardParsed = JSON.parse(leaderboard)
     console.log('Leader Parsed after submit:', leaderboardParsed)
     clearleaderboard()
@@ -455,17 +468,11 @@ function init() {
   }
 
   function sortLeaderList() {
-    const leaderboardNameScoreList = []
-    leaderboardParsed.forEach(item => {
-      const objValues = Object.values(item)
-      leaderboardNameScoreList.push(item)
-    })
-
-    leaderboardNameScoreList.sort((a, b) => {
+    leaderboardParsed.sort((a, b) => {
       return b.score - a.score
     })
 
-    leaderboardNameScoreList.forEach(element => {
+    leaderboardParsed.forEach(element => {
       const newListItem = document.createElement('tr')
       const nameTD = document.createElement('td')
       const scoreTD = document.createElement('td')
@@ -490,6 +497,7 @@ function init() {
   //Button Events
   start.addEventListener('click', startUpGame)
   reset.addEventListener('click', resetGame)
+  close.addEventListener('click', closeGameOverBox)
   submit.addEventListener('click', submitScore)
   window.addEventListener('keyup', movementAndFire)
   musicButton.addEventListener('click', music)
@@ -506,6 +514,5 @@ function init() {
   musicChannel.src = '/Assets/Audio-assets/Corona-BG-Music.mp3'
   musicChannel.volume = 0.50
 }
-
 
 window.addEventListener('DOMContentLoaded', init)
