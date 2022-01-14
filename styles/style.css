@@ -217,11 +217,11 @@ h4 {
 }
 
 .character {
-  background-image: url("/Assets/Red-Needle2v2.gif");
+  background-image: url("/Assets/Red-Needle3.gif");
 }
 
 .emptyCharacter {
-  background-image: url("/Assets/Red-Needle2Emptyv2.gif");
+  background-image: url("/Assets/Red-NeedleEmpty3.gif");
 }
 
 .fire {
