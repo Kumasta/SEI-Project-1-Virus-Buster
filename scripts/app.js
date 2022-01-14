@@ -134,7 +134,6 @@ function init() {
   }
 
   function resetGame() {
-    close.disabled = false
     console.log('reset click.')
     diffuculty = 0
     direction = 1
@@ -458,6 +457,7 @@ function init() {
     leaderboardParsed = JSON.parse(leaderboard)
     console.log('Leader Parsed after submit:', leaderboardParsed)
     clearleaderboard()
+    close.disabled = false
   }
 
   function clearleaderboard() {
