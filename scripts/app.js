@@ -208,7 +208,7 @@ function init() {
 
     scoreNumber += 1000
     score.innerHTML = scoreNumber
-    cells[position].innerHTML = '<img src="/Assets/BoomGIF3.gif" alt="Boom GIF">'
+    cells[position].innerHTML = '<img src="/Assets/Splat2.gif" alt="Boom GIF">'
     setTimeout(() => {
       cells[position].innerHTML = null
     }, 500)
@@ -512,7 +512,7 @@ function init() {
   makegrid()
   sortLeaderList()
   musicChannel.src = '/Assets/Audio-assets/Corona-BG-Music.mp3'
-  musicChannel.volume = 0.50
+  musicChannel.volume = 0.20
 }
 
 window.addEventListener('DOMContentLoaded', init)
