@@ -18,20 +18,20 @@ function init() {
   let scoreNumber = 0
   let highScore = 0
 
-  //Audio Bank
+  //audio Bank
   const sfx = {
-    laser: 'Assets/Audio-assets/01-lazer.mp3',
-    playerMiss: 'Assets/Audio-assets/08-playerMiss.mp3',
-    playerHit: 'Assets/Audio-assets/04-playerHit.wav',
-    virusAttack: 'Assets/Audio-assets/09-enemyFire.wav',
-    virusMiss: 'Assets/Audio-assets/5 Park View 5.m4a',
-    virusHit: 'Assets/Audio-assets/10-enemyHit.wav',
-    gameStart: 'Assets/Audio-assets/062-startLevel.wav',
-    gameOver: 'Assets/Audio-assets/02-gameOver.wav',
-    levelWin: 'Assets/Audio-assets/07-levelWin.wav',
+    laser: 'assets/audio-assets/01-lazer.mp3',
+    playerMiss: 'assets/audio-assets/08-playerMiss.mp3',
+    playerHit: 'assets/audio-assets/04-playerHit.wav',
+    virusAttack: 'assets/audio-assets/09-enemyFire.wav',
+    virusMiss: 'assets/audio-assets/5 Park View 5.m4a',
+    virusHit: 'assets/audio-assets/10-enemyHit.wav',
+    gameStart: 'assets/audio-assets/062-startLevel.wav',
+    gameOver: 'assets/audio-assets/02-gameOver.wav',
+    levelWin: 'assets/audio-assets/07-levelWin.wav',
   }
 
-  //Audio DOM Channels
+  //audio DOM Channels
   const generalChannel = document.querySelector('#general-channel')
   const musicChannel = document.querySelector('#music-channel')
   musicChannel.loop = true
@@ -207,7 +207,7 @@ function init() {
 
     scoreNumber += 1000
     score.innerHTML = scoreNumber
-    cells[position].innerHTML = '<img src="/Assets/Splat2.gif" alt="Boom GIF">'
+    cells[position].innerHTML = '<img src="/assets/Splat2.gif" alt="Boom GIF">'
     setTimeout(() => {
       cells[position].innerHTML = null
     }, 500)
@@ -318,7 +318,7 @@ function init() {
         gameFinished()
       }, speed)
     }
-    cells[location].innerHTML = '<img src="Assets/BoomGIF2.gif" alt="Boom GIF">'
+    cells[location].innerHTML = '<img src="assets/BoomGIF2.gif" alt="Boom GIF">'
     setTimeout(() => {
       cells[location].innerHTML = null
     }, speed)
@@ -511,7 +511,7 @@ function init() {
 
   makegrid()
   sortLeaderList()
-  musicChannel.src = 'Assets/Audio-assets/Corona-BG-Music.mp3'
+  musicChannel.src = 'assets/audio-assets/Corona-BG-Music.mp3'
   musicChannel.volume = 0.20
 }
 

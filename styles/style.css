@@ -6,7 +6,7 @@
 
 body {
   height: 100vh;
-  background-image: url('../Assets/Covid-Background2.jpeg');
+  background-image: url('../assets/Covid-Background2.jpeg');
   background-repeat: no-repeat ;
   background-position: center;
   background-size: cover;
@@ -57,7 +57,7 @@ header {
   justify-content: center;
   color: rgba(26, 25, 25, 0);
   border-radius: 25px;
-  background-image: url('../Assets/Background-2v2.jpg');
+  background-image: url('../assets/Background-2v2.jpg');
   background-repeat: no-repeat ;
   background-position: center;
   background-size: cover;
@@ -68,7 +68,7 @@ header {
   justify-content: space-around;
   align-items:center;
   height: 80px;
-  background-image: url('../Assets/Banner.jpg');
+  background-image: url('../assets/Banner.jpg');
   background-repeat: no-repeat ;
   background-position: center;
   color: white;
@@ -208,32 +208,32 @@ h4 {
 }
 
 .smoke {
-  background-image: url("/Assets/BoomGIF4v2.gif");
+  background-image: url("../assets/BoomGIF4v2.gif");
   transform: rotate(180deg);
 }
 
 .smoke-reverse {
-  background-image: url("../Assets/SmokeGIF.gif");
+  background-image: url("../assets/SmokeGIF.gif");
 }
 
 .character {
-  background-image: url("../Assets/Red-Needle3.gif");
+  background-image: url("../assets/Red-Needle3.gif");
 }
 
 .emptyCharacter {
-  background-image: url("../Assets/Red-NeedleEmpty3.gif");
+  background-image: url("../assets/Red-NeedleEmpty3.gif");
 }
 
 .fire {
-  background-image: url("../Assets/noemi-coute-laser2.gif");
+  background-image: url("../assets/noemi-coute-laser2.gif");
 }
 
 .virusFire {
-  background-image: url("../Assets/red-covid-gif.gif");
+  background-image: url("../assets/red-covid-gif.gif");
 }
 
 .virus {
-  background-image: url("../Assets/Covid V4.gif");
+  background-image: url("../assets/Covid V4.gif");
 }
 
 img {
