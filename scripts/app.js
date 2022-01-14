@@ -20,15 +20,15 @@ function init() {
 
   //Audio Bank
   const sfx = {
-    laser: '/Assets/Audio-assets/01-lazer.mp3',
-    playerMiss: '/Assets/Audio-assets/08-playerMiss.mp3',
-    playerHit: '/Assets/Audio-assets/04-playerHit.wav',
-    virusAttack: '/Assets/Audio-assets/09-enemyFire.wav',
-    virusMiss: '/Assets/Audio-assets/5 Park View 5.m4a',
-    virusHit: '/Assets/Audio-assets/10-enemyHit.wav',
-    gameStart: '/Assets/Audio-assets/062-startLevel.wav',
-    gameOver: '/Assets/Audio-assets/02-gameOver.wav',
-    levelWin: '/Assets/Audio-assets/07-levelWin.wav',
+    laser: 'Assets/Audio-assets/01-lazer.mp3',
+    playerMiss: 'Assets/Audio-assets/08-playerMiss.mp3',
+    playerHit: 'Assets/Audio-assets/04-playerHit.wav',
+    virusAttack: 'Assets/Audio-assets/09-enemyFire.wav',
+    virusMiss: 'Assets/Audio-assets/5 Park View 5.m4a',
+    virusHit: 'Assets/Audio-assets/10-enemyHit.wav',
+    gameStart: 'Assets/Audio-assets/062-startLevel.wav',
+    gameOver: 'Assets/Audio-assets/02-gameOver.wav',
+    levelWin: 'Assets/Audio-assets/07-levelWin.wav',
   }
 
   //Audio DOM Channels
@@ -318,7 +318,7 @@ function init() {
         gameFinished()
       }, speed)
     }
-    cells[location].innerHTML = '<img src="/Assets/BoomGIF2.gif" alt="Boom GIF">'
+    cells[location].innerHTML = '<img src="Assets/BoomGIF2.gif" alt="Boom GIF">'
     setTimeout(() => {
       cells[location].innerHTML = null
     }, speed)

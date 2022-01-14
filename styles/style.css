@@ -6,7 +6,7 @@
 
 body {
   height: 100vh;
-  background-image: url('/Assets/Covid-Background2.jpeg');
+  background-image: url('../Assets/Covid-Background2.jpeg');
   background-repeat: no-repeat ;
   background-position: center;
   background-size: cover;
@@ -57,7 +57,7 @@ header {
   justify-content: center;
   color: rgba(26, 25, 25, 0);
   border-radius: 25px;
-  background-image: url('/Assets/Background-2v2.jpg');
+  background-image: url('../Assets/Background-2v2.jpg');
   background-repeat: no-repeat ;
   background-position: center;
   background-size: cover;
@@ -68,7 +68,7 @@ header {
   justify-content: space-around;
   align-items:center;
   height: 80px;
-  background-image: url('/Assets/Banner.jpg');
+  background-image: url('../Assets/Banner.jpg');
   background-repeat: no-repeat ;
   background-position: center;
   color: white;
@@ -213,27 +213,27 @@ h4 {
 }
 
 .smoke-reverse {
-  background-image: url("/Assets/SmokeGIF.gif");
+  background-image: url("../Assets/SmokeGIF.gif");
 }
 
 .character {
-  background-image: url("/Assets/Red-Needle3.gif");
+  background-image: url("../Assets/Red-Needle3.gif");
 }
 
 .emptyCharacter {
-  background-image: url("/Assets/Red-NeedleEmpty3.gif");
+  background-image: url("../Assets/Red-NeedleEmpty3.gif");
 }
 
 .fire {
-  background-image: url("/Assets/noemi-coute-laser2.gif");
+  background-image: url("../Assets/noemi-coute-laser2.gif");
 }
 
 .virusFire {
-  background-image: url("/Assets/red-covid-gif.gif");
+  background-image: url("../Assets/red-covid-gif.gif");
 }
 
 .virus {
-  background-image: url("/Assets/Covid V4.gif");
+  background-image: url("../Assets/Covid V4.gif");
 }
 
 img {
