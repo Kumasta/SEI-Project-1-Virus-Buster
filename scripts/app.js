@@ -318,7 +318,7 @@ function init() {
         gameFinished()
       }, speed)
     }
-    cells[location].innerHTML = '<img src="assets/BoomGIF2.gif" alt="Boom GIF">'
+    cells[location].innerHTML = '<img src="../assets/BoomGIF2.gif" alt="Boom GIF">'
     setTimeout(() => {
       cells[location].innerHTML = null
     }, speed)
