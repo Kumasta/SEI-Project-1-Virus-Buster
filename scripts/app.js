@@ -511,7 +511,7 @@ function init() {
 
   makegrid()
   sortLeaderList()
-  musicChannel.src = '/Assets/Audio-assets/Corona-BG-Music.mp3'
+  musicChannel.src = 'Assets/Audio-assets/Corona-BG-Music.mp3'
   musicChannel.volume = 0.20
 }
 
