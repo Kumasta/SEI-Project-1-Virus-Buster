@@ -1,5 +1,5 @@
 # Virus-Buster
-A Space Invader type game themed around killing Covid virus cells
+A Space Invader type game themed around killing Covid virus cells.  
 Link: https://kumasta.github.io/SEI-Project-1-Virus-Buster/
 
 ![Overveiw](https://github.com/Kumasta/Images-Gifs/blob/main/Screenshot%202022-02-02%20at%2015.59.56.jpeg?raw=true)
