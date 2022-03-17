@@ -1,27 +1,103 @@
+### General Assembly Project-1: Web Browser Game
 # Virus-Buster
 A Space Invader type game themed around killing Covid virus cells.  
-Link: https://kumasta.github.io/SEI-Project-1-Virus-Buster/
+### Project Link : https://kumasta.github.io/SEI-Project-1-Virus-Buster/
 
 ![Overveiw](https://github.com/Kumasta/Images-Gifs/blob/main/Screenshot%202022-02-02%20at%2015.59.56.jpeg?raw=true)
 
-## About The Project
-My first project built from the ground up priamlry using vanilla Javacript. Virus buster is a riff on the classic game Space Invaders.  
+## Table of Contents
+
+- [Brief](#brief)
+- [Concept](#concept)
+- [Built With](#built-with)
+- [Approach](#approach)
+  - [Planning](#planning)
+    - [Wire Frame](#wire-frame)
+    - [Sudo Code](#sudo-code)
+    - [Checklist](#checklist)
+   - [Day to day breakdown](#day-to-day-breakdown)
+- [Challenges](#challenges)
+- [Future Improvments](#future-improvements--changes)
+- [Main Takeaways](#main-takeaways)
+- [Contact](#contact)
 
 
+## Brief
+My first project built from the ground up priamlry using vanilla Javacript. Virus buster is a riff on the classic game Space Invaders.
+The criteria was to choose a classic game from the acades and replacate the game as a browser game using Javascript. Our time from was 9 days and we had to work solo.
 
+
+## Concept
+I choose to do space invaders and the MVP was that the player should be able to clear at least one wave of aliens and score should be displayed at the end of the game. With extra goals being the page should be responsive, each wave get more difficult and a persistant leaderboard saved in local storage. For the theme I went with covid-19 and vaccines to replace the aliens and player.  
 
 
 ## Built With
+This project was built using standard code of the following languages:
 
 * HTML5
 * CSS
 * JavaScript
 
+## Approach
 
+### Planning
+##### Wire Frame
+Before sign off I created a wire frame of how I thought the layout would be, compared to the final game, the layout has a few differences but overal kept the layout of the individual componenents. Some functionality like lines of enemys moving in different dirrections did not make it into the final game. 
+![Space](https://user-images.githubusercontent.com/94964514/158641422-21f8cdd3-2881-4f4e-92cc-8edbe7c00eba.png)
+
+##### Sudo Code
+Wrote some sudo coding notes to give me a rough idea of the order I need to work on parts.
+<img width="1048" alt="image" src="https://user-images.githubusercontent.com/94964514/158662710-93157149-d6fc-4874-b348-751f5cbb4417.png">
+
+##### Checklist
+Early on in development I figured I needed to make a check list of things to do do and to also help me visualise what order to to them. There a couple features I did not implement that would be added in future versions. 
+
+![image](https://user-images.githubusercontent.com/94964514/158663610-c747fa3f-5c7c-48d8-b2fa-a4d931d0f925.png)
+![image](https://user-images.githubusercontent.com/94964514/158663701-246e89b2-391f-4466-a0f4-d41567aa60e4.png)
+
+
+### Day to day breakdown
+
+#### Day 1
+Started off with making the base HRTL, CSS and JavaScript files.  Then making a ten by ten grid and finding first draft image assests for the play, enamy and the projectile. First features to implement where player start position and movement. As per the game movement was limited to the bottom line with no need of up to down movement. Next was adding in an enemy sprite at random posisions that would disapear and reapear on the right input. Then I worked on the player projectile that will spanwn 1 tile above player and move up a tile evey set interval. character sprites very displayed by changing the class of the tile to one where that background image of the sprite is set, collision was added by checking the class of the tile and if two differnet classes matched. 
+
+By the end of first day of coding I ended up with this:       
+![ezgif-2-f66bde661b](https://user-images.githubusercontent.com/94964514/158664426-db4b410a-769a-403d-ba51-bc9715decbbd.gif)
+
+#### Day 2
+
+![ezgif-7-566eab3279](https://user-images.githubusercontent.com/94964514/158666443-09bf62bc-828a-4232-9ab1-356cc75c1f55.gif)
+
+#### Day 3
+
+![ezgif-2-bbdafa8320](https://user-images.githubusercontent.com/94964514/158783370-c213d39a-dd51-4e4b-b1b8-43c7676bbed4.gif)
+
+
+#### Day 4
+
+![95B88E64-501A-4306-B7D2-E3D3B7FE5610](https://user-images.githubusercontent.com/94964514/158783946-9da4d152-1bbd-4b76-939d-b8215e71f8ef.png)
+
+#### Day 5
+
+![EF20421C-2810-4EB1-824B-A7DEF0BA5E89](https://user-images.githubusercontent.com/94964514/158784081-f98255e0-4dcf-4f48-9bc2-1f2389af29d0.png)
+
+#### Day 6
+
+![219D97EE-5F7F-4B57-8AF8-B1D022F84180](https://user-images.githubusercontent.com/94964514/158784253-5336f2c6-43cc-459b-a696-6da47f87915c.png)
+
+#### Day 7
+
+![0488C5B5-74A7-4CED-ABA3-45D6DAD2B8F7](https://user-images.githubusercontent.com/94964514/158784325-a6229777-debb-436a-a75d-f5fadc8a939e.png)
+
+#### Day 8
+
+![gif](https://github.com/Kumasta/Images-Gifs/blob/main/virus-buster-2.gif?raw=true)
 
 ## Contact
 
-Social - https://www.linkedin.com/in/mayur-kumar-a6a5ba4a/ - mayurtheraj@googlemail.com
+Social - https://www.linkedin.com/in/mayur-kumar-dev/
+
+email - mayurkumardev@googlemail.com
 
 Game Link: [https://github.com/your_username/repo_name](https://kumasta.github.io/Virus-Buster/)
 
