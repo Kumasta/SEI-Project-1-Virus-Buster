@@ -1,5 +1,5 @@
 ### General Assembly Project-1: Web Browser Game
-# Virus-Buster
+# --Virus-Buster--
 A Space Invader type game themed around killing Covid virus cells.  
 ### Project Link : https://kumasta.github.io/SEI-Project-1-Virus-Buster/
 
