@@ -121,11 +121,11 @@ As stated in the challenges, I went into this project with a lot of unease but I
 
 Social - https://www.linkedin.com/in/mayur-kumar-dev/
 
-email - mayurkumardev@googlemail.com
+Email - mayurkumardev@googlemail.com
 
-Game Link: [https://github.com/your_username/repo_name](https://kumasta.github.io/Virus-Buster/)
+Project Link: [https://github.com/your_username/repo_name](https://kumasta.github.io/Virus-Buster/)
 
-Git repo: https://github.com/Kumasta/Virus-Buster
+Git Repo: https://github.com/Kumasta/Virus-Buster
 
 <p align="right">(<a href="#general-assembly-project-1-web-browser-game">back to top</a>)</p>
 
