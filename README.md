@@ -17,7 +17,7 @@ A Space Invader type game themed around killing Covid virus cells.
     - [Checklist](#checklist)
    - [Day to day breakdown](#day-to-day-breakdown)
 - [Challenges](#challenges)
-- [Future Improvments](#future-improvements)
+- [Future Improvements](#future-improvements)
 - [Main Takeaways](#main-takeaways)
 - [Contact](#contact)
 
